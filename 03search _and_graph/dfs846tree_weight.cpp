@@ -2,7 +2,7 @@
 #include<cstring>
 using namespace std;
 const int N = 100010;
-int e[N], ne[N], idx;
+int e[2*N], ne[2*N], idx; //双向边
 int h[N];//每个节点的单链表
 int n;
 bool vis[N];
