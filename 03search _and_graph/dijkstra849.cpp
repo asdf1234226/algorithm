@@ -22,7 +22,7 @@ void dijkstra(){
         int min_index = -1;
         for (int j = 1; j <=n; j++) //在还没确定最短距离的点，找最小距离的min_index
         {
-            if (!st[j] &&(min_index == -1) || (dist[j]<dist[min_index]))
+            if (!st[j] &&(min_index == -1 || dist[j]<dist[min_index]))
             {
                 min_index=j;
             }
@@ -51,7 +51,6 @@ int main(){
     {
         cout << dist[n];
     }
-
     return 0;
 }
 
