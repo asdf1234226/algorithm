@@ -32,7 +32,7 @@ void floyd(){
                 if (d[u][k]+d[k][v]<d[u][v])
                 {
                     d[u][v]=d[u][k]+d[k][v];
-                    path[u][v] = k;
+                    path[u][v] = k; //***********
                 }
             }
         }
@@ -40,14 +40,12 @@ void floyd(){
 }
 
 void print_path(int u, int v){
-    int k = path[u][v];
-    if (k==-1)
-    {
-        return;
+    if (path[u][v] == v) {
+        cout << u << " " << v << "\n";
+    } else {
+        print_path(u, path[u][v]);
+        print_path(path[u][v], v);
     }
-    print_path(u,k);
-    cout << " " << k << " ";
-    print_path(k,v);
 }
 
 int main(){
@@ -63,6 +61,7 @@ int main(){
         int a,b,c;
         cin >> a >> b >> c;
         d[a][b]=min(d[a][b],c);
+        path[a][b]=b;   //*******初始化
     }
     floyd();
     while (k--)
