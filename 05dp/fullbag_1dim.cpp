@@ -4,21 +4,17 @@ int n, m;//个数，容量
 const int N = 1010;
 int v[N];
 int w[N];
-int f[N][N];
+int f[N];
 
 int max_value(){
     for (int i = 1; i <= n; i++)
     {
         for (int j = v[i]; j <= m; j++)
         {
-            for (int k = 0; k*v[i]<=j; k++)
-            {
-                f[i][j]=max(f[i][j], f[i-1][j-k*v[i]]+k*w[i]);
-            }
-            
+                f[j]=max(f[j], f[j-v[i]]+w[i]);
+            } 
         }
-    }
-    return f[n][m];
+    return f[m];
 }
 
 
