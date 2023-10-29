@@ -24,19 +24,12 @@ int min_cost(){
         f[i][i]=0;
     }
     
-    for (int i = 1; i <= n-1; i++)
+    for (int len = 2; len <= n; len++)
     {
-        for(int j=i+1;j<=n;j++){
-            if (j==i+1)
-            {
-                f[i][j]=a[i]+a[j];
-            }
-            else
-            {
-                for (int k = i; k+1 <= j; k++)
-                {
-                    f[i][j] = min(f[i][j], f[i][k]+f[k+1][j]+presum[j]-presum[i-1]);
-                }
+        for(int i=1;i+len-1<=n;i++){
+            int l=i,r=i+len-1;
+            for (int k = l; k+1 <= r; k++) {
+                f[l][r] =min(f[l][r], f[l][k]+f[k+1][r]+presum[r]-presum[l-1]);
             }
         }
     }

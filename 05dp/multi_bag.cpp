@@ -17,7 +17,7 @@ int max_value(){
     {
         for (int j = 0; j <=m; j++)
         {
-            for (int k = 0; k<=s[i]&&k*v[i] <= j; k++)
+            for (int k = 0; k<=s[i]&&k*v[i] <= j; k++)//和完全背包朴素版多了数量限制
             {
                 f[i][j]=max(f[i][j],f[i-1][j-k*v[i]]+k*w[i]);
             }
