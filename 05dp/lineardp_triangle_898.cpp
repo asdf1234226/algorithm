@@ -11,7 +11,7 @@ int n;
 const int N=1010;
 const int INF = 0x3f3f3f3f;
 int path[N][N];
-int f[N][N];
+int f[N][N];//从起点走向(i,j)的距离
 
 
 //f(i,j)由f(i-1,j)和f(i-1,j-1)，从上往下
@@ -23,9 +23,8 @@ int max_path(){
             f[i][j]=-INF; //初始化
         }
     }
-    
-    f[1][1]=path[1][1];
 
+    f[1][1]=path[1][1];
     for (int i = 2; i <=n; i++)
     {
         for (int j = 1; j <= i; j++)
@@ -39,7 +38,6 @@ int max_path(){
         res=max(res, f[n][i]);
     }
     return res;
-    
 }
 
 int max_path1() //从下往上f[i][j]，由f[i+1][j]和f[i+1][j+1]转移而来
