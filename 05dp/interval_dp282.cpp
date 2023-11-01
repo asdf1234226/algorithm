@@ -23,7 +23,6 @@ int min_cost(){
     {
         f[i][i]=0;
     }
-    
     for (int len = 2; len <= n; len++)
     {
         for(int i=1;i+len-1<=n;i++){
