@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/algorithm/gaopinfromsanye",
-      "program": "/home/algorithm/gaopinfromsanye/build/Debug/outDebug",
+      "cwd": "/home/algorithm/06greedy",
+      "program": "/home/algorithm/06greedy/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

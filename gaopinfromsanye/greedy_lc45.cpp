@@ -25,6 +25,10 @@ int jump(vector<int> nums){
         {
             return -1;
         }
+        if (nexti>=n-1)
+        {
+            break;
+        } 
         i=nexti;
         ans++;
     }   
@@ -32,7 +36,7 @@ int jump(vector<int> nums){
 }
 
 int main(){
-    vector<int> a = {2,3,0,0,4};
+    vector<int> a = {3,2,1};
     cout << jump(a);
     return 0;
 }
