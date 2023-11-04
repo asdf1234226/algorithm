@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/algorithm/06greedy",
-      "program": "/home/algorithm/06greedy/build/Debug/outDebug",
+      "cwd": "/home/algorithm/hot100/mid",
+      "program": "/home/algorithm/hot100/mid/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
