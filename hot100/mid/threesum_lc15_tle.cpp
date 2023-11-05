@@ -7,7 +7,9 @@
 #include<set>
 using namespace std;
 
-struct Compare
+
+//****************TLE了***************
+struct Compare//set存vector需要定义Compare，为了计算vector对象的hash
 {
     bool operator()(const vector<int>& a, const vector<int>& b) const{
         return a<b;
@@ -24,6 +26,14 @@ vector<vector<int>> threeSum(vector<int>& nums)
     {
         return ans;
     }
+    sort(nums.begin(),nums.end());
+    if (nums[0]>0||nums[n-1]<0){
+        return ans;
+    }
+    if (nums[0]==0 && nums[n-1]==0){
+        ans.push_back({0,0,0});
+        return ans;
+    }
     set<vector<int>, Compare> st;
     for (int i = 0; i < n; i++)
     {
@@ -35,7 +45,7 @@ vector<vector<int>> threeSum(vector<int>& nums)
             if (it!=mp.end())
             {
                 vector<int> vt = {nums[i],nums[j],nums[it->second]};
-                sort(vt.begin(), vt.end());
+                sort(vt.begin(), vt.end());//排序+ set保证不重复
                 st.insert(vt);
             }
             else{

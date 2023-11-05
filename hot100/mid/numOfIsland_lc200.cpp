@@ -6,7 +6,7 @@ int dx[4]={1,0,-1,0};
 int dy[4]={0,1,0,-1};
 
 void dfs(vector<vector<int>>& grid, int x, int y){
-    grid[x][y]=2;
+    grid[x][y]=2;//标记访问过
     for (int i = 0; i < 4; i++)
     {
         int nx = x+dx[i], ny=y+dy[i];
@@ -29,7 +29,6 @@ int help(vector<vector<int>>& grid){
                 dfs(grid,i,j);//每次遇到陆地，求一个最大连通量，岛屿数量+1
                 ans++;
             }
-            
         }
     }
     return ans;

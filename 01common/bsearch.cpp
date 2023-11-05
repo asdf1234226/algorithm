@@ -3,7 +3,7 @@ using namespace std;
 
 bool check(int x){return true;} //检查x是否满足某种属性
 //寻找右边界
-int bsearch_left(int l, int r)
+int bsearch_left(int l, int r)//移动l
 {
     while (l<r)
     {
@@ -17,7 +17,7 @@ int bsearch_left(int l, int r)
 }
 
 //寻找左边界
-int bsearch_right(int l, int r)
+int bsearch_right(int l, int r)//移动r
 {
     while(l<r)
     {

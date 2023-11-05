@@ -15,6 +15,7 @@ int help(vector<vector<int>>& grid)
     int dy[4]={0,1,0,-1};
     unordered_map<int, int> mp;
     queue<PII> q;
+    //将所有腐烂的橘子入队
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
@@ -22,7 +23,7 @@ int help(vector<vector<int>>& grid)
             if (grid[i][j]==2)
             {
                 q.push({i,j});
-                mp[i*n+j]=0;
+                mp[i*n+j]=0;   //map存储访问到(i,j)的距离
                 grid[i][j]=-1;//标记访问过
             } 
         }   
@@ -46,7 +47,7 @@ int help(vector<vector<int>>& grid)
         }  
     }
 
-    for (int i = 0; i < m; i++)
+    for (int i = 0; i < m; i++)//判断感染后还有没有新鲜的橘子
     {
         for (int j = 0; j < n; j++)
         {
