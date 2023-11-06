@@ -6,6 +6,53 @@
 //matrix = [[1,1,1],[1,0,1],[1,1,1]]
 //[[1,0,1],[0,0,0],[1,0,1]]
 
-void setZeroes(vector<vector<int>>& matrix) {
 
+#include<iostream>
+#include<vector>
+#include<set>
+using namespace std;
+
+void setZeroes(vector<vector<int>>& matrix) {
+    set<int> row;
+    set<int> line;
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[0].size(); j++)
+        {
+            if (matrix[i][j]==0)
+            {
+                row.insert(i);
+                line.insert(j);
+            }     
+        }    
+    }
+    for(auto it: row){
+        for (int j = 0; j < matrix[0].size(); j++)
+        {
+            matrix[it][j]=0;
+        }
+    }
+    for(auto it: line){
+        for (int i = 0; i < matrix.size(); i++)
+        {
+            matrix[i][it]=0;
+        }
+    }
+
+}
+
+
+int main(){
+    vector<vector<int>> a = {{1,1,1}, {1,0,1}, {1,1,1}};
+    setZeroes(a);
+    for (int i = 0; i < a.size(); i++)
+    {
+        for (int j = 0; j < a[0].size(); j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    return 0;
 }
