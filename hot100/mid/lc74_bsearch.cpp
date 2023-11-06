@@ -26,25 +26,26 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
             r=mid-1;
         }
     }
-    if (matrix[l][0]==target)
-    {
-        return true;
-    }else if (matrix[l][0]<target)
-    {
-        //do nothing
-    }else {//target>matrix[l][0]，就要找上一行//TODO check下
-        if (l>0)
-        {
-            l--;
-            cout << "a";
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //不需要这些
+//    if (matrix[l][0]==target)
+//    {
+//        return true;
+//    }else if (matrix[l][0]<target)
+//    {
+//        //do nothing
+//    }else {//target>matrix[l][0]，就要找上一行
+//        if (l>0)
+//        {
+//            l--;
+//            cout << "a";
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
     
-    cout << l;
+    //第二次查找在l行查找
     int l1=0, r1=n-1;
     while (l1<r1)
     {
