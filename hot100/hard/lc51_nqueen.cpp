@@ -12,7 +12,7 @@ using namespace std;
 vector<vector<string>> ans;
 vector<string> s;
 const int N = 30;
-bool col[N], diag[N], anti_diag[N]; //y=-x+b(b=x+y), y=x+b(b=y-x)
+bool col[N], diag[2*N], anti_diag[2*N]; //y=-x+b(b=x+y), y=x+b(b=y-x)
 void dfs(int u, int n){
     if (u==n)
     {

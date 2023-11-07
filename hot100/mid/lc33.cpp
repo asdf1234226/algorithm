@@ -59,9 +59,9 @@ int search(vector<int>& nums, int target) {
 }
 
 int main(){
-    //vector<int> a ={4,5,6,7,0,1,2};
-    //cout << search(a,0);
-    vector<int> a ={1,3};
+    vector<int> a ={4,5,6,7,0,1,2};
     cout << search(a,0);
+    //vector<int> a ={1,3};
+    //cout << search(a,0);
     return 0;
 }
