@@ -19,6 +19,7 @@ int help(vector<int>& nums, int l, int r, int target){
             r=mid-1;
         }
     }
+    cout << l << ":" << r <<endl;
     return nums[l]==target?l:-1;
 }
 
@@ -37,19 +38,30 @@ int search(vector<int>& nums, int target) {
             r=mid-1;
         }
     }
+    cout << "xuanzhuan: " << l << endl;
     //两段有序的数组查找target
-    int ans = help(nums, 0, l, target);
-    if (ans==-1){
-        ans= help(nums, l+1,n-1,target);
-    }
-    return ans;
+    // int ans = help(nums, 0, l, target);
+    // if (ans==-1 && l+1 <= n-1){//一定要加判断条件，不然可能数组访问越界
+    //     ans= help(nums, l+1,n-1,target);
+    // }
+    // return ans;
 
-    //或者通过和 nums[0] 进行比较，得知 target 是在旋转点的左边还是右边
-    //target>nums[0] 在[0,l],否则[l+1,n-1]
+    //通过和 nums[0] 进行比较，得知 target 是在旋转点的左边还是右边
+    //target>=nums[0] 在[0,l],否则[l+1,n-1]
+    if (target>=nums[0]){
+        return help(nums, 0, l, target);
+    }else if (target<nums[0]&&l+1<=n-1)
+    {
+        return help(nums, l+1,n-1,target);
+    }
+    return -1;
+
 }
 
 int main(){
     //vector<int> a ={4,5,6,7,0,1,2};
+    //cout << search(a,0);
     vector<int> a ={1,3};
     cout << search(a,0);
+    return 0;
 }

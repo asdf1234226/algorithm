@@ -8,6 +8,41 @@
 //输入：nums = [5,7,7,8,8,10], target = 8
 //输出：[3,4]
 
-vector<int> searchRange(vector<int>& nums, int target) {
 
+#include<iostream>
+#include<vector>
+using namespace std;
+vector<int> searchRange(vector<int>& nums, int target) {
+	int n = nums.size();
+	int l=0,r=n-1;
+	while(l<r){
+		int mid =(l+r+1)>>1;
+		if(nums[mid]<=target){
+			l=mid;
+		}else{
+			r=mid-1;
+		}
+	}
+	if(nums[l]!=target){
+		return vector<int>{-1,-1};
+	}
+	int index_r=l;
+	l=0,r=n-1;
+	while(l<r){
+		int mid =(l+r)>>1;
+		if(nums[mid]>=target){
+			r=mid;
+		}else{
+			l=mid+1;
+		}
+	}
+	int index_l=l;
+	return vector<int>{index_l,index_r};
+}
+
+int main(){
+    vector<int> a ={5,7,7,8,8,10};
+    vector<int> ans = searchRange(a,9);
+    cout << ans[0] << ":" << ans[1];
+    return 0;
 }
