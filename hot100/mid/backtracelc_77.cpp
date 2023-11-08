@@ -15,18 +15,18 @@ using namespace std;
 //   第二层 1下{2,3}， 2下{3}， 3下{}，用i+1去重实现
 
 vector<vector<int>> ans;
-vector<int> path;
+vector<int> path;//记录路径
 void dfs(int n, int k, int start){
     if (path.size()==k)
     {
         ans.push_back(path);
         return;
     }
-    for (int i = start; i <= n; i++)
+    for (int i = start; i <= n; i++) //  控制树的横向遍历
     {
         path.push_back(i);
-        dfs(n,k,i+1);//用i+1去重，前面如果有{1,2}，到2时，不会再形成{2,1}只会有{2,3}
-        //如果是i，则a[i]可重复选择，考虑的是a[i]及i后的元素
+        dfs(n,k,i+1);//i+1保证该树枝的下一层递归会从i+1及后元素中选
+        //如果是i，则i可重复选择，下一层递归会从i及i后元素中选
         path.pop_back();
     }
 }

@@ -66,8 +66,9 @@ void print_v(vector<vector<int>>& a){
 
 
 int main(){
-    vector<int> a = {10,1,2,7,6,1,5};
-    vector<vector<int>> res = combinationSum2(a,8);
+    //vector<int> a = {10,1,2,7,6,1,5};
+    vector<int> a = {2,2,2};
+    vector<vector<int>> res = combinationSum2(a,2);
     print_v(res);
     return 0;
 }

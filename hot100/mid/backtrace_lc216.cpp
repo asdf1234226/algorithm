@@ -34,7 +34,6 @@ void dfs(int k, int n, int start, int sum){
         dfs(k,n,i+1,sum+i);//i+1避免重复选a[i]
         path.pop_back();
     }
-    
 }
 vector<vector<int>> combinationSum3(int k, int n) {
     dfs(k,n,1,0);
