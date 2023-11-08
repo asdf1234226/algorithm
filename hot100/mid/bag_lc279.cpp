@@ -8,6 +8,28 @@
 //输出：2
 //解释：13 = 4 + 9
 
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int N = 10010;
+int f[N];
 int numSquares(int n) {
+	memset(f,0x3f,sizeof f);
+    f[0]=0;
+	for(int i=1; i<=n/i;i++){//i<=n/i可以防数据溢出
+		for (int j = i*i; j <= n; j++)
+		{
+            //选i和不选i
+			f[j]=min(f[j],f[j-i*i]+1);
+            
+		}
+	}
+	return f[n];
 
+}
+
+
+int main(){
+    cout << numSquares(14);
+    return 0;
 }
