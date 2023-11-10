@@ -12,49 +12,29 @@
 #include<algorithm>
 using namespace std;
 
-const int N = 1010;
-bool visit[N];
 vector<int> path;
+vector<vector<int>> ans;
 
-struct Compare{//set存vector需要定义Compare，为了计算vector对象的hash
-    bool operator()(const vector<int>& a, const vector<int>& b) const{
-        return a<b;
-    }
-};
-set<vector<int>, Compare> vec_set;
-void dfs(vector<int>& nums, int u){
-    if (u==nums.size())
+void dfs(vector<int>& nums, int start){
+    if (start==nums.size()+1)
     {
         return;
     }
-    for (int i = 0; i < nums.size(); i++)
+    ans.push_back(path);
+    for (int i = start; i < nums.size(); i++)
     {
-        if (!visit[i])
-        {
-            visit[i]=true;
-            path.push_back(nums[i]);
-            sort(path.begin(),path.end());
-            vec_set.insert(path);
-            dfs(nums, u+1);
-            visit[i]=false;
-            path.pop_back();
-        }
+        path.push_back(nums[i]);
+        dfs(nums, i+1);
+        path.pop_back();
     }
-    
 }
 
-vector<vector<int>> subsets(vector<int>& nums) {
-    vector<vector<int>> ans;
-    int n = nums.size();
-    vec_set.insert(vector<int>{});
-    vec_set.insert(nums);
-    dfs(nums, 0);
-    for (auto it: vec_set)
-    {
-        ans.push_back(it);
-    }
+vector<vector<int>> subsets(vector<int>& nums) 
+{
+    dfs(nums,0);
     return ans;
 }
+
 
 int main(){
     vector<int> a = {1,2,3};
@@ -67,5 +47,48 @@ int main(){
         }
         cout << endl;
     }
-
+    cout << res.size();
 }
+
+//*************错误的写法，四不像，将排列过程中每个path状态加入set去重
+//*************没有用set去重放ans的写法，就算能实现，复杂度也过大）
+
+// struct Compare{//set存vector需要定义Compare，为了计算vector对象的hash
+//     bool operator()(const vector<int>& a, const vector<int>& b) const{
+//         return a<b;
+//     }
+// };
+// set<vector<int>, Compare> vec_set;
+// void dfs(vector<int>& nums, int u){
+//     if (u==nums.size())
+//     {
+//         return;
+//     }
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         if (!visit[i])
+//         {
+//             visit[i]=true;
+//             path.push_back(nums[i]);
+//             sort(path.begin(),path.end());
+//             vec_set.insert(path);
+//             dfs(nums, u+1);
+//             visit[i]=false;
+//             path.pop_back();
+//         }
+//     }
+    
+// }
+
+// vector<vector<int>> subsets(vector<int>& nums) {
+//     vector<vector<int>> ans;
+//     int n = nums.size();
+//     vec_set.insert(vector<int>{});
+//     vec_set.insert(nums);
+//     dfs(nums, 0);
+//     for (auto it: vec_set)
+//     {
+//         ans.push_back(it);
+//     }
+//     return ans;
+// }
