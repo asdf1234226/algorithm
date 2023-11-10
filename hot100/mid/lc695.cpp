@@ -15,7 +15,7 @@ using namespace std;
 int dx[4]={1,0,-1,0};
 int dy[4]={0,1,0,-1};
 
-int dfs(vector<vector<int>> grid, int x, int y){
+int dfs(vector<vector<int>>& grid, int x, int y){//要用引用
     int count = 1;
     grid[x][y]=2;
     for (int i = 0; i < 4; i++)
@@ -24,7 +24,7 @@ int dfs(vector<vector<int>> grid, int x, int y){
         int ny= y+dy[i];
         if (nx>=0 && nx <grid.size() && ny>=0 && ny< grid[0].size() && grid[nx][ny]==1)
         {
-            count+=dfs(grid,nx,ny);
+            count+=dfs(grid,nx,ny); //相加
         }
     }
     return count;
