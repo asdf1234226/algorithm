@@ -20,10 +20,7 @@ int getCount(vector<int> path, int a){
 }
 
 void dfs(int n){
-    if (getCount(path,-1)==n && getCount(path,1)>= getCount(path,1)){
-        for(int i = path.size() ;i<2*n;i++){
-            path.push_back(1);//补全右括号
-        }
+    if (getCount(path,-1)==n && getCount(path,1)== n){
         string str = "";
         for (auto it : path) {
             if (it == -1){
