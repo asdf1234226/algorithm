@@ -11,6 +11,7 @@
 
 #include<iostream>
 #include<vector>
+#include <algorithm>
 using namespace std;
 
 vector<vector<int>> ans;
@@ -26,7 +27,7 @@ void dfs(vector<int>& nums, int u)
     }
     for (int i = 0; i < nums.size(); i++)
     {
-        if (i>0 && nums[i]==nums[i-1] && !vis[i-1])
+        if (i>0 && nums[i]==nums[i-1] && !vis[i-1])//去重同一树层
         {
             continue;
         }
@@ -42,6 +43,7 @@ void dfs(vector<int>& nums, int u)
 }
 
 vector<vector<int>> permuteUnique(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
     dfs(nums,0);
     return ans;
 }

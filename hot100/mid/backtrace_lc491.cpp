@@ -10,11 +10,12 @@
 
 #include<iostream>
 #include<vector>
+#include <set>
 using namespace std;
 
 vector<vector<int>> ans;
 vector<int> path;
-bool used[1010];
+//bool used[1010];
 
 
 void dfs(vector<int> nums, int start){
@@ -22,20 +23,20 @@ void dfs(vector<int> nums, int start){
     {
         ans.push_back(path);
     }
+    set<int> st;
     for (int i = start; i < nums.size(); i++)
     {
-        if (i>0 && nums[i]==nums[i-1] && used[i-1]==false)//去重同一树层
+        if (st.find(nums[i])!=st.end())//去重同一树层
         {
             continue;
         }
-        if (path.size()==0 || path.size()>=1 && nums[i]>=path[path.size()-1])
+        if (path.size()==0 || path.size()>=1 && nums[i]>=path.back())
         //只有nums[i]作为第一个元素  或  nums[i]>=上一个加入的元素时，才会将nums[i]放入path
         {
-            used[i]=true;
+            st.insert(nums[i]);
             path.push_back(nums[i]);
             dfs(nums, i+1);
             path.pop_back();
-            used[i]=false;
         }
     }
 }
@@ -57,7 +58,7 @@ void print_v(vector<vector<int>>& a){
 }
 
 int main(){
-    vector<int> a = {4,6,7,7};
+    vector<int> a = {1,2,3,4,5,6,7,8,9,10,1,1,1,1,1};
     vector<vector<int>> res = findSubsequences(a);
     print_v(res);
     return 0;

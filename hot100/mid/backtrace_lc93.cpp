@@ -14,12 +14,15 @@ vector<string> ans;
 vector<string> path;
 bool isValid(string s, int l ,int r){//判断是有效ip
     int res = 0;
+    if (s[l]-'0'==0){
+        return r==l;//如果s[l]为'0'，则数字只能是0，否则是有前导0的数字
+    }
     while (l<=r)
     {
         res= res*10+ s[l]-'0';
         l++;
     }
-    return res>=1 && res<=255; 
+    return res>=0 && res<=255;
 }
 
 void dfs(string s, int start){

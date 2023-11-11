@@ -17,7 +17,7 @@ int dy[4]={0,1,0,-1};
 
 int dfs(vector<vector<int>>& grid, int x, int y){//要用引用
     int count = 1;
-    grid[x][y]=2;
+    grid[x][y]=2;//标记访问过
     for (int i = 0; i < 4; i++)
     {
         int nx= x+dx[i];
