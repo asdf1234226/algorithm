@@ -16,7 +16,7 @@ int dx[4]={1,0,-1,0};
 int dy[4]={0,-1,0,1};
 bool visit[10][10];
 bool dfs(vector<vector<char>>& board, int x, int y, string word, int index){
-    if (index==word.size()-1){
+    if (index==word.size()-1){//访问到最后一个字母
         return true;
     }
     bool f = false;
@@ -35,9 +35,11 @@ bool exist(vector<vector<char>>& board, string word) {
     for (int i = 0; i < board.size(); ++i) {
         for (int j = 0; j < board[0].size(); ++j) {
             if (board[i][j]==word[0]){
+                visit[i][j]=true;
                 if (dfs(board,i,j,word,0)){
                     return true;
                 }
+                visit[i][j]= false;
             }
         }
     }

@@ -16,11 +16,11 @@ vector<int> path;
 vector<vector<int>> ans;
 
 void dfs(vector<int>& nums, int start){
-    if (start==nums.size()+1)
+    ans.push_back(path);
+    if (start==nums.size())
     {
         return;
     }
-    ans.push_back(path);
     for (int i = start; i < nums.size(); i++)
     {
         path.push_back(nums[i]);
