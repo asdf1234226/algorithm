@@ -39,12 +39,24 @@ void dfs(int n){
     {
         return;
     }
-    for (int i = -1; i <=1&& i!=0; ++i) {//要么放0，要么放1
-        if (getCount(path,-1)<n && getCount(path,-1)>= getCount(path,1)){//剪枝，任何时候path中的-1个数应该>= 1
-            path.push_back(i);
-            dfs(n);
-            path.pop_back();
-        }
+    //  添加左右括号的条件不同
+    // for (int i = -1; i <=1&& i!=0; ++i) {//要么放0，要么放1
+    //     if (getCount(path,-1)<n && getCount(path,1)<n && getCount(path,-1)> getCount(path,1)){//剪枝，任何时候path中的-1个数应该>= 1
+    //         path.push_back(i);
+    //         dfs(n);
+    //         path.pop_back();
+    //     }
+    // }
+    if (getCount(path,-1) < n){ //如果左括号的数量小于n
+        path.push_back(-1); //添加一个左括号
+        dfs(n);
+        path.pop_back();
+    }
+
+    if (getCount(path,1) < getCount(path,-1)){ //如果右括号的数量小于左括号的数量
+        path.push_back(1); //添加一个右括号
+        dfs(n);
+        path.pop_back();
     }
 }
 
