@@ -20,7 +20,7 @@ int jump(vector<int>& nums) {
     int step = 0;
     while (i<n)
     {
-        int next = 0;//下一跳的下标
+        int next = -1;//下一跳的下标
         int maxDis = 0;//当前所能到的最远距离
         for(int j = 1; j <= nums[i] && j+i < n; j++){
             if (maxDis<i+j+nums[i+j])
@@ -28,15 +28,17 @@ int jump(vector<int>& nums) {
                 maxDis = i+j+nums[i+j];
                 next = i+j;
             }
-            if (next>=n-1)
-            {
-                return step;
-            }
+        }
+        step++;
+        if(-1==next){//如果next没更新，说明下一跳最远是原地踏步
+            return -1;
+        }
+        if (next >= n-1){
+            return step;
         }
         i = next;
-        step++;
     }
-    return -1;  
+    return step;
 }
 
 int main(){

@@ -10,7 +10,7 @@ int jump(vector<int> nums){
     int i=0;
     int ans=0;
     int nexti=0;
-    while (i<n-1)
+    while (i<n)
     {
         int maxlen =0;
         for (int j = 1; j <= nums[i]; j++)
@@ -25,18 +25,18 @@ int jump(vector<int> nums){
         {
             return -1;
         }
-        if (nexti>=n-1)
-        {
-            break;
-        } 
         i=nexti;
         ans++;
+//        if (nexti>=n-1)
+//        {
+//            break;
+//        }
     }   
     return ans;
 }
 
 int main(){
-    vector<int> a = {3,2,1};
+    vector<int> a = {2,3,1,1,4};
     cout << jump(a);
     return 0;
 }
