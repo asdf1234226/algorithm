@@ -33,7 +33,18 @@ int countNum(string str, int num){
 
 int findMaxForm(vector<string>& strs, int m, int n)
 {
-    int n = strs
+    int dp[m+1][n+1];
+    memset(dp,0, sizeof dp);
+    for (int i = 0; i < strs.size(); ++i) {
+        int zeroCount = countNum(strs[i], 0);
+        int oneCount = countNum(strs[i],1);
+        for (int j = m; j >= zeroCount; j--) {
+            for (int k = n; k >= oneCount ; k--) {
+                dp[j][k] = max(dp[j][k],dp[j-zeroCount][k-oneCount]+1);
+            }
+        }
+    }
+    return dp[m][n];
 }
 
 int main(){

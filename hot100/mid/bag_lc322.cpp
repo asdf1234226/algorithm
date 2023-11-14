@@ -23,7 +23,7 @@ int coinChange(vector<int>& coins, int amount) {
             f[j]=min(f[j], f[j-coins[i]]+1);
         }  
     }
-    return f[amount];
+    return f[amount]==0x3f3f3f3f?-1:f[amount];
 }
 
 

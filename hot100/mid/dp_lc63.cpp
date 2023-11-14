@@ -21,11 +21,21 @@ int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid)
     memset(f, 0, sizeof f);
     for (int j = 0; j < n; j++)
     {
-        f[0][j] = obstacleGrid[0][j]==0?1:0;
+        if (obstacleGrid[0][j]==0){
+            f[0][j] =1;
+        } else{
+            break;
+        }
+        //f[0][j] = obstacleGrid[0][j]==0?1:0;
     }
     for (int i = 0; i < m; i++)
     {
-        f[i][0] = obstacleGrid[i][0]==0?1:0;
+        if (obstacleGrid[i][0]==0){
+            f[i][0]=1;
+        } else{
+            break;
+        }
+        //f[i][0] = obstacleGrid[i][0]==0?1:0;
     }
     //f[i][j]由f[i-1][j]和f[i][j-1]转移而来，但是如果obstacleGrid[i][j]==1, f[i][j]=0
     for (int i = 1; i < m; i++)
