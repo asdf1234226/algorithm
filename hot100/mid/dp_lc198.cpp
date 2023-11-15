@@ -14,6 +14,14 @@
 using namespace std;
 
 int rob(vector<int>& nums) {
+    if (nums.size()==1)
+    {
+        return nums[0];
+    }
+    if (nums.size()==2)
+    {
+        return max(nums[0], nums[1]);
+    }
     int n = nums.size();
     int dp[n+1];
     memset(dp,0,sizeof dp);

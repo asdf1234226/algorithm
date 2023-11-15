@@ -31,7 +31,7 @@ int maxProfit(vector<int>& prices) {
     dp[0][0]=-prices[0];
     dp[0][1]=0;
     dp[0][2]=-prices[0];//第0天先买再卖，完成第一次，再第二次买
-    dp[0][4]=0;
+    dp[0][3]=0;
     for (int i = 1; i < prices.size(); i++)
     {
         dp[i][0] = max(dp[i-1][0], -prices[i]);

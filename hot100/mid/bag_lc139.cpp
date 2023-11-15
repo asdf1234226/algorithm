@@ -12,22 +12,24 @@ using namespace std;
 //外层背包s.size()，内层物品，但是这个物品的体积不太好搞
 
 //dp[i]表示前i个字母能否拼接
-// dp[j] && s.substr(j,i-j+1)在字典中
+// dp[j] && 前j+1个字母到前i个字母组成的字符串在字典中,  下标为[j-1+1, i-1], 长度为(i-1)-(j-1+1)+1
 bool wordBreak(string s, vector<string>& wordDict) {
     set<string> st(wordDict.begin(), wordDict.end());
-    int n = wordDict.size();
+    int n = s.size();
     bool dp[n+1];
+    for(int i = 0 ;i < n+1;i++){
+        dp[i]=false;
+    }
     dp[0]= true;
     for(int i = 1; i<= s.size(); i++){
         for (int j = 0; j < i; j++)
         {
             //第i个字母对应下标i-1
-            if (dp[j]&& st.find(s.substr(j,i-1-j+1))!=st.end())
+            if (dp[j]&& st.find(s.substr((j-1)+1,i-1-j+1))!=st.end())
             {
                 dp[i]=true;
             }
-            
-        }  
+        }
     }
     return dp[n];
 }

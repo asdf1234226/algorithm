@@ -23,20 +23,20 @@ int maxProfit(int k, vector<int>& prices){
     memset(dp, 0, sizeof dp);
     for (int i = 0; i < k; i++)
     {
-        dp[0][2*k] = -prices[0];
+        dp[0][2*i] = -prices[0];
     }
     for (int i = 1; i < n; i++)
     {
         for (int j = 0; j < 2*k; j++)
         {
             if(j==0){
-                dp[i][0] = max(dp[i-1][0], -prices[i]);
-            }else if (j%2==0)
-            {
-                dp[i][j] = max(dp[i-1][j], dp[i-1][j-1]-prices[i]);
-            }else
+                dp[i][j] = max(dp[i-1][0], -prices[i]);
+            }else if (j%2==1)
             {
                 dp[i][j] = max(dp[i-1][j], dp[i-1][j-1]+prices[i]);
+            }else//j%2==0
+            {
+                dp[i][j] = max(dp[i-1][j], dp[i-1][j-1]-prices[i]);
             }
         }  
     }
@@ -44,7 +44,7 @@ int maxProfit(int k, vector<int>& prices){
 }
 
 int main(){
-    vector<int> a = {3,2,6,5,0,3};
+    vector<int> a = {3,3,5,0,0,3,1,4};
     cout << maxProfit(2, a);
     return 0;
 }

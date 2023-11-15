@@ -13,6 +13,7 @@
 using namespace std;
 const int N = 10010;
 int f[N];
+//完全背包求最值
 int numSquares(int n) {
 	memset(f,0x3f,sizeof f);
     f[0]=0;
