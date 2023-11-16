@@ -25,7 +25,7 @@ int longestCommonSubsequence(string text1, string text2) {
                 f[i][j]=f[i-1][j-1]+1;
             }else
             {
-                f[i][j]=max(f[i-1][j], f[i][j-1]);
+                f[i][j]=max(f[i-1][j], f[i][j-1]);//text1[i]不在，or text2[j]不在
             }
         }
     }

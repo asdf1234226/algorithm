@@ -59,7 +59,7 @@ vector<vector<string>> partition(string s) {
 
 
 int main(){
-    string s = "aab";
+    string s = "aaa";
     vector<vector<string>> a = partition(s);
     for (int i = 0; i < a.size(); i++)
     {
