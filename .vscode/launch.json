@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/algorithm/hot100/mid/gupiao",
-      "program": "/home/algorithm/hot100/mid/gupiao/build/Debug/outDebug",
+      "cwd": "/home/algorithm/hot100/btree",
+      "program": "/home/algorithm/hot100/btree/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
