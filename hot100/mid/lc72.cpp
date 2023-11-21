@@ -20,7 +20,7 @@
 #include<cstring>
 using namespace std;
 
-//dp[i][j]  不连续，word1的前i个字母， word2的前j个字母的最小距离
+//dp[i][j]  连续，word1的前i个字母， word2的前j个字母的最小距离,所以只和i-1,j-1有关
 // word1[i-1]==word2[j-1] 不需要操作
 // word1[i-1]!=word2[j-1]
 //                a.word1添加 dp[i][j-1]+1    和word2删除一个 操作数相同 
