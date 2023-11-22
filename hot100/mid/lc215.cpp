@@ -13,54 +13,13 @@
 #include <queue>
 using namespace std;
 
-//k-1个  k   n-k个
-//大根堆, n个元素, 第k大是堆顶 n-k大小的堆
-//小根堆，第k大是堆顶  k大小的堆
+// 堆大小为k，堆顶是要返回的元素，所以用小顶堆
 int findKthLargest(vector<int>& nums, int k) {
-    priority_queue<int> pq;//维护n-k大小的大根堆
-    int n = nums.size();
-    for (int i = 0; i < n-k; ++i) {
-        pq.push(nums[i]);
-    }
-    for (int i = n-k; i < n; ++i) {
-        if (nums[i]<pq.top()){
-            pq.pop();
-            pq.push(nums[i]);
-        }
-    }
-    return pq.top();
-}
-//TODO 修正
-
-int main(){
-    vector<int> a = {3,2,3,1,2,4,5,5,6};
-    cout << findKthLargest(a,4);
-    return 0;
-}
-
-int findKthLargest(vector<int>& nums, int k) {
-    priority_queue<int> pq;//维护n-k+1大小的大根堆
-    int n = nums.size();
-    for (int i = 0; i < n; ++i) {
-        pq.push(nums[i]);
-        if (pq.size() > n-k+1) {
-            pq.pop();
-        }
-    }
-    return pq.top();
-}
-
-int main(){
-    vector<int> a = {3,2,3,1,2,4,5,5,6};
-    cout << findKthLargest(a,4);
-    return 0;
-}
-
-int findKthLargest(vector<int>& nums, int k) {
-    priority_queue<int, vector<int>, greater<int>> pq;//维护k大小的小根堆
+    priority_queue<int, vector<int>, greater<int>> pq;
     for (int i = 0; i < k; ++i) {
         pq.push(nums[i]);
     }
+    //堆只存前k个大的元素
     for (int i = k; i < nums.size(); ++i) {
         if (nums[i]>pq.top()){
             pq.pop();
@@ -70,8 +29,25 @@ int findKthLargest(vector<int>& nums, int k) {
     return pq.top();
 }
 
+int findKthLargest1(vector<int>& nums, int k) {
+    priority_queue<int> pq;
+    //大顶堆，全放入
+    for (int i = 0; i < nums.size(); ++i) {
+        pq.push(nums[i]);
+    }
+    //弹出k-1个，剩下的堆顶就是第k大
+    while (k-1>0){
+        pq.pop();
+        k--;
+    }
+    return pq.top();
+}
+
+
 int main(){
     vector<int> a = {3,2,3,1,2,4,5,5,6};
     cout << findKthLargest(a,4);
     return 0;
 }
+
+
