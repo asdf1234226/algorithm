@@ -37,3 +37,41 @@ int main(){
     cout << findKthLargest(a,4);
     return 0;
 }
+
+int findKthLargest(vector<int>& nums, int k) {
+    priority_queue<int> pq;//维护n-k+1大小的大根堆
+    int n = nums.size();
+    for (int i = 0; i < n; ++i) {
+        pq.push(nums[i]);
+        if (pq.size() > n-k+1) {
+            pq.pop();
+        }
+    }
+    return pq.top();
+}
+
+int main(){
+    vector<int> a = {3,2,3,1,2,4,5,5,6};
+    cout << findKthLargest(a,4);
+    return 0;
+}
+
+int findKthLargest(vector<int>& nums, int k) {
+    priority_queue<int, vector<int>, greater<int>> pq;//维护k大小的小根堆
+    for (int i = 0; i < k; ++i) {
+        pq.push(nums[i]);
+    }
+    for (int i = k; i < nums.size(); ++i) {
+        if (nums[i]>pq.top()){
+            pq.pop();
+            pq.push(nums[i]);
+        }
+    }
+    return pq.top();
+}
+
+int main(){
+    vector<int> a = {3,2,3,1,2,4,5,5,6};
+    cout << findKthLargest(a,4);
+    return 0;
+}
