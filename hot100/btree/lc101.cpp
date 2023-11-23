@@ -9,8 +9,6 @@
 
 #include<iostream>
 #include<vector>
-#include<queue>
-#include<algorithm>
 using namespace std;
 
 struct TreeNode{
@@ -27,7 +25,7 @@ struct TreeNode{
 
 bool compare1(TreeNode* left, TreeNode* right){
     if (left== nullptr && right== nullptr) return true;
-    else if (left!= nullptr || right != nullptr) return false;
+    else if (left== nullptr || right== nullptr) return false;
     else if (left->val != right->val) return false;
     bool outside = compare1(left->left, right->right);
     bool inside = compare1(left->right, right->left);
@@ -35,7 +33,7 @@ bool compare1(TreeNode* left, TreeNode* right){
 }
 //左右节点都空         true
 //一空一不空 或 两个不同       false
-//相同时，还要看下一层的值是否对称，内外侧都要相同；外侧指左的左和右的右；内测指左的右和右的左
+//左右值相同时，还要看下一层的值是否对称，内外侧都要相同；外侧指左的左和右的右；内测指左的右和右的左
 bool isSymmetric(TreeNode* root) {
     if (root== nullptr) return true;
     return compare1(root->left, root->right);

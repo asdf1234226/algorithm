@@ -22,7 +22,7 @@ struct TreeNode{
     }
 };
 
-//1. 后续求高度
+//1. 后序求高度
 //2. 层序遍历
 int maxDepth(TreeNode* root) {//根节点的最大高度，后序求的是高度
     if (root== nullptr) return 0;
