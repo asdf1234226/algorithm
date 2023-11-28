@@ -23,11 +23,11 @@ TreeNode* searchBST(TreeNode* root, int val){
     {
         return root;
     }
-    if (root->val<val)
+    if (root->val>val)
     {
         return searchBST(root->left,val);
     }
-    else//root->val>val
+    else//root->val<val
     {
         return searchBST(root->right,val);
     }

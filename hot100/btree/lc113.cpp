@@ -15,34 +15,29 @@ struct TreeNode{
     }
 };
 
-//TODO  和所有路径对比
+//TODO  和所有路径对比,记住树的回溯模板
 vector<vector<int>> ans;
 vector<int> path;
 
 void dfs(TreeNode* root, int sum){
-    if (root==nullptr)
-    {
-        return;
-    }
+    path.push_back(root->val);
+    sum-=root->val;
     if (root->left==nullptr && root->right==nullptr)//到叶子节点
     {
         if (sum==0)
         {
             ans.push_back(path);
         }
+        path.pop_back();
         return;
     }
-    if (root->left)
-    {
-        path.push_back(root->left->val);
-        dfs(root->left, sum-root->val);
-        path.pop_back();
+    if (root->left){
+        dfs(root->left,sum);//已经将root->left->val加入过path，所以要弹出
+        //path.pop_back();
     }
-    if (root->right)
-    {
-        path.push_back(root->right->val);
-        dfs(root->right, sum-root->val);
-        path.pop_back();
+    if (root->right){
+        dfs(root->right, sum);
+        //path.pop_back();
     }
     path.pop_back();
 }
@@ -51,7 +46,6 @@ vector<vector<int>> pathSum(TreeNode* root, int sum){
     {
         return ans;
     }
-    path.push_back(root->val);
     dfs(root, sum);
     return ans;
 }

@@ -19,11 +19,11 @@ TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
     {
         return nullptr;
     }
-    else if (t1==nullptr || t2!=nullptr)
+    else if (t1==nullptr && t2!=nullptr)
     {
         return t2;
     }
-    else if (t1!=nullptr || t2==nullptr)
+    else if (t1!=nullptr && t2==nullptr)
     {
         return t1;
     }

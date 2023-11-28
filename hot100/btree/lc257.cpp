@@ -25,6 +25,7 @@ vector<string> ans;
 vector<int> path;
 
 void dfs(TreeNode* root){
+    path.push_back(root->val);
     if (root->left==nullptr && root->right == nullptr)
     {
         string s;
@@ -37,21 +38,21 @@ void dfs(TreeNode* root){
             s = s.substr(0, s.size()-2);
         }
         ans.push_back(s);
+        path.pop_back();//这样写比较清晰吧
         return;
     }
     if (root->left)
     {
-        path.push_back(root->left->val);
         dfs(root->left);
-        path.pop_back();//回溯
+        //path.pop_back();//回溯
     }
     
     if (root->right)
     {
-        path.push_back(root->right->val);
         dfs(root->right);
-        path.pop_back();//回溯
+        //path.pop_back();//回溯
     }
+    path.pop_back();
 }
 
 vector<string> binaryTreePaths(TreeNode* root){
@@ -59,7 +60,6 @@ vector<string> binaryTreePaths(TreeNode* root){
     {
         return ans;
     }
-    path.push_back(root->val);
     dfs(root);
     return ans;
 }
