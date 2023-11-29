@@ -6,7 +6,7 @@ TreeNode* insertIntoBST(TreeNode* root, int val){
         TreeNode* node = new TreeNode(val);
         return node;
     }
-    if(val<root.val){
+    if(val<root->val){
         root->left = insertIntoBST(root->left, val);//在左子树插入，要返回root
         return root;
     }
