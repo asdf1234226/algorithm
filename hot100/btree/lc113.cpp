@@ -32,12 +32,10 @@ void dfs(TreeNode* root, int sum){
         return;
     }
     if (root->left){
-        dfs(root->left,sum);//已经将root->left->val加入过path，所以要弹出
-        //path.pop_back();
+        dfs(root->left,sum);
     }
     if (root->right){
         dfs(root->right, sum);
-        //path.pop_back();
     }
     path.pop_back();
 }

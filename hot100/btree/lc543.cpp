@@ -37,7 +37,6 @@ int maxDepth(TreeNode* root){
 int diameterOfBinaryTree(TreeNode* root) {
     maxDepth(root);
     return ans;
-
 }
 
 

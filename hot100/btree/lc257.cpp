@@ -38,21 +38,18 @@ void dfs(TreeNode* root){
             s = s.substr(0, s.size()-2);
         }
         ans.push_back(s);
-        path.pop_back();//这样写比较清晰吧
+        path.pop_back();//因为要return，所以要弹出
         return;
     }
     if (root->left)
     {
         dfs(root->left);
-        //path.pop_back();//回溯
     }
-    
     if (root->right)
     {
         dfs(root->right);
-        //path.pop_back();//回溯
     }
-    path.pop_back();
+    path.pop_back();//弹出，回溯
 }
 
 vector<string> binaryTreePaths(TreeNode* root){

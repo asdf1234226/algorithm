@@ -27,6 +27,7 @@ bool compare1(TreeNode* left, TreeNode* right){
     if (left== nullptr && right== nullptr) return true;
     else if (left== nullptr || right== nullptr) return false;
     else if (left->val != right->val) return false;
+    //剩余left->val== right->val
     bool outside = compare1(left->left, right->right);
     bool inside = compare1(left->right, right->left);
     return outside&&inside;

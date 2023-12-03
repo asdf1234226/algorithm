@@ -49,7 +49,7 @@ void dfs(TreeNode* root){
     {
         return;
     }
-    dfs(root->right);//右左中
+    dfs(root->right);//右中左
     root->val = root->val+sum;
     sum = root->val;
     dfs(root->left);

@@ -12,11 +12,23 @@
 #include <vector>
 using namespace std;
 
+
+//对比lc283移动零  --- j左边的只能非0
 void sortColors(vector<int>& nums) {
     int n = nums.size();
+    //1. 将0全部移动到头部
     int j = 0;//j左边的只能是0
     for (int i = 0; i < n; ++i) {
         if (nums[i]==0){
+            swap(nums[i], nums[j]);
+            j++;
+        }else{
+            continue;
+        }
+    }
+    //j现在指向最后一个0的下一个位置，将1继续移动到剩余部分的头部
+    for (int i = 0; i < n; ++i) {
+        if (nums[i]==1){
             swap(nums[i], nums[j]);
             j++;
         }else{
