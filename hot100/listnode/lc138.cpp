@@ -39,21 +39,21 @@ Node* copyRandomList(Node* head) {
 
 //要不要简化
 Node* copyRandomList(Node* head) {
-    if (!head) return nullptr;
-
+    if(head==NULL){
+        return NULL;
+    }
     map<Node*, Node*> mp;
-    Node* h = head;
-    while (h) {
-        mp[h] = new Node(h->val);
-        h = h->next;
+    Node* cur = head;
+    while(cur){
+        mp[cur]=new Node(cur->val);//mp存储原节点和对应的复制节点
+        cur=cur->next;
     }
-
-    h = head;
-    while (h) {
-        mp[h]->next = mp[h->next];
-        mp[h]->random = mp[h->random];
-        h = h->next;
+    cur = head;
+    while(cur){
+        mp[cur]->next=mp[cur->next];//原节cur，复制节点mp[cur]
+        //复制节点->next  原节点->next对应的复制节点
+        mp[cur]->random=mp[cur->random];
+        cur=cur->next;
     }
-
     return mp[head];
 }

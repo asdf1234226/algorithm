@@ -16,29 +16,22 @@ ListNode* reverseList(ListNode* head){
     }
     return pre;
 }
-
 ListNode* reverseKGroup(ListNode* head, int k) {
-    ListNode* pre = new ListNode(-1);
-    pre->next=head;
-    ListNode* cur = pre;
-    while(cur){
-        ListNode* start = cur->next;
-        ListNode* end = cur;
-        for(int i = 0; i<k&&end ;i++){
-            end=end->next;
+    ListNode* cur = head;
+    ListNode* end = head;//记录前k个节点组成的链表尾节点
+    for(int i=0;i<k;i++){
+        if(cur==nullptr){
+            return head;//不足k个
         }
-        if(end==nullptr){
-            break;//最后一条子链表不满足k个了，不需要反转
-        }
-        ListNode* next_start = end->next;//记录下一链表的起点
-        end->next = nullptr;//断开链表--为了反转
-        ListNode* new_start = reverseList(start);//反转
-        ListNode* cur1 = new_start;
-        while(cur1->next){
-            cur1=cur1->next;
-        }
-        cur1->next=next_start;//连接断开的链表
-        cur = end;
+        end=cur;
+        cur=cur->next;
     }
-    return pre->next;
+    end->next=nullptr;//1.前k个节点断开
+    ListNode* nextHead = reverseList(head);
+    end = nextHead;//翻转后链表的尾节点
+    while(end->next){
+        end=end->next;
+    }
+    end->next=reverseKGroup(cur,k);//2.连接递归后的部分
+    return nextHead;
 }

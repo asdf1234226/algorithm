@@ -37,6 +37,7 @@ ListNode *detectCycle(ListNode *head) {
         if (fast==slow)//一次相遇判断是否有环
         {
             hasCycle = true;
+            break;
         }
     }
     if (hasCycle)
