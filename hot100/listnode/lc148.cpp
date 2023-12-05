@@ -41,8 +41,8 @@ ListNode* sortList(ListNode* head) {
     //如果5，4，2，1，3 跳出循环时fast指向3，slow指向2
     ListNode* l2 = slow->next;//右半边链表的头节点
     slow->next=nullptr;//左半边链表断开
-    ListNode* left = sort(head);
-    ListNode* right = sort(l2);
+    ListNode* left = sortList(head);
+    ListNode* right = sortList(l2);
     //return mergeTwoLists(left, right);
     ListNode* pre = new ListNode(-1);
     ListNode* cur = pre;
