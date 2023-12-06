@@ -31,23 +31,26 @@ void print_node(ListNode* head){
 }
 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-    int carry = 0;
+    int carry = 0;//进位
     ListNode* pre = new ListNode(-1);
     ListNode* cur = pre;
-    while(l1 || l2){
+    while(l1 || l2){//为什么是或的关系，没有就取0，这样不用区分两个链表都有值，还是其中一个有值另一个没值
         int sum = carry;
         if(l1){
             sum+=l1->val;
+            l1=l1->next;
         }
         if(l2){
             sum+=l2->val;
+            l2=l2->next;
         }
         int val = sum%10;
         carry = sum/10;
         cur->next = new ListNode(val);
         cur=cur->next;
-        l1=l1->next;
-        l2=l2->next;  
+    }
+    if (carry==1){//处理加完后还有进位
+        cur->next = new ListNode(1);
     }
     return pre->next;
 }

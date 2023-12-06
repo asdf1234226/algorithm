@@ -22,6 +22,13 @@ bool isPalindrome(ListNode* head) {
     {
         return true;
     }
+    //特殊处理长度为1和2的
+    if(head && head->next==nullptr){
+        return true;
+    }
+    if(head && head->next && head->next->next==nullptr){
+        return head->val==head->next->val;
+    }
     ListNode* fast = head;
     ListNode* slow = head;
     // 1 2 3 4 nullptr
@@ -31,15 +38,17 @@ bool isPalindrome(ListNode* head) {
         fast=fast->next->next;
         slow=slow->next;
     }
-    slow=slow->next;
+    //slow=slow->next;  模拟下，不需要这个
     ListNode* cur2 = reverseList(slow);
     ListNode* cur1 = head;
     while (cur2)
     {
-        if (cur1!=cur2)
+        if (cur1->val!=cur2->val)
         {
             return false;
-        }   
+        }
+        cur1=cur1->next;
+        cur2=cur2->next;
     }
     return true;
 }
