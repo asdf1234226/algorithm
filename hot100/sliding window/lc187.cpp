@@ -5,13 +5,15 @@
 // 输出：["AAAAACCCCC","CCCCCAAAAA"]
 
 #include<iostream>
-#include<map>
+#include<set>
+#include <map>
 #include<vector>
 using namespace std;   
 
 
 vector<string> findRepeatedDnaSequences(string s) {
     vector<string> ans;
+    set<string> st;//去重
     if (s.size()<10)
     {
         return ans;
@@ -19,12 +21,15 @@ vector<string> findRepeatedDnaSequences(string s) {
     map<string, int> mp;
     for (int end = 9; end < s.size(); end++)
     {
-        string str = s.substr(end-9,10);
+        string str = s.substr(end-9,10);//固定长度的滑动窗口
         mp[str]++;
         if (mp[str]>1)
         {
-            ans.push_back(str);
+            st.insert(str);
         }
+    }
+    for(auto it: st){
+        ans.push_back(it);
     }
     return ans;
 }

@@ -43,6 +43,8 @@ void rotate(vector<int>& nums, int k) {
 
 //方法三：
 //如何空间O(1)
+
+//这样会超时
 void rotate_1(vector<int>& nums, int k) {
     int n = nums.size();
     k=k%n;
@@ -56,6 +58,26 @@ void rotate_1(vector<int>& nums, int k) {
     {
         cout << nums[i] << " ";
     }   
+}
+
+void reverse(vector<int>& nums, int l, int r){
+    while (l<r){
+        swap(nums[l], nums[r]);
+        l++;
+        r--;
+    }
+}
+//小技巧
+void rotate_2(vector<int>& nums, int k) {
+    int n = nums.size();
+    k=k%n;
+    reverse(nums,0,n-1);////整个数组反转，右边的k个就会到左边，但是是倒序
+    reverse(nums,0,k-1);//左边k翻转
+    reverse(nums,k,n-1);//右边翻转
+    for (int i = 0; i < n; i++)
+    {
+        cout << nums[i] << " ";
+    }
 }
 
 int main(){

@@ -25,7 +25,7 @@ int maxScore(vector<int>& cardPoints, int k) {
         preSum[i]=preSum[i-1]+cardPoints[i-1];
     }
     int min_sum = 0x3f3f3f3f;
-    for (int i = 1; i+n-k-1 <= n; i++)  //(i+n-k-1)-i+1=n-k
+    for (int i = 1; i+n-k-1 <= n; i++)  //长度为n-k，(i+n-k-1)-i+1=n-k
     {
         min_sum=min(preSum[i+n-k-1]-preSum[i-1], min_sum);//公式pre[r]-pre[l-1]
     }

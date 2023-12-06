@@ -27,7 +27,7 @@ int maxRotateFunction(vector<int>& nums) {
     {
         nums.push_back(nums[i]);
     }
-    int ans = -0x3f3f3f3f;
+    int ans = INT_MIN;
     int window_sum = 0;
     int preSum[2*n+1];
     memset(preSum,0,sizeof preSum);
@@ -45,7 +45,7 @@ int maxRotateFunction(vector<int>& nums) {
         {
             window_sum+=nums[end]*(n-1);//新进入窗口的
 
-            //原窗口的结束下标是end-1,开始下标是end-n，对应的前缀和数组是end合end-n+1(前end个数)
+            //原窗口的结束下标是end-1,开始下标是end-n，是第end和end-n+1个数
             window_sum-=(preSum[end]-preSum[(end-n+1-1)+1]);//假设原窗口a0,a1,a2,a3，这里要减去a1~a3
             ans = max(window_sum, ans);
         }

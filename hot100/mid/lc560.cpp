@@ -7,11 +7,12 @@
 #include<vector>
 using namespace std;
 
+//TODO 这种写法时间复杂度太高，和不用前缀和区别不大
 //前缀和
 int subarraySum(vector<int>& nums, int k) {
     int n = nums.size();
     int ans = 0;
-    vector<int> preSum(n,0);
+    vector<int> preSum(n+1,0);
     for (int i = 1; i <= n; i++)
     {
         preSum[i]=preSum[i-1]+nums[i-1];//nums[i-1]是第i个数
@@ -32,7 +33,7 @@ int subarraySum(vector<int>& nums, int k) {
 }
 
 int main(){
-    vector<int> a = {1,2,3};
-    cout << subarraySum(a,3);
+    vector<int> a = {1,1,1};
+    cout << subarraySum(a,2);
     return 0;
 }
