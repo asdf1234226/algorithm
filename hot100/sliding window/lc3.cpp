@@ -18,20 +18,12 @@ int lengthOfLongestSubstring(string s) {
     for (int end =0;end<s.size();end++)
     {
         char c = s[end];
-        if(mp.find(c)!=mp.end()){
-            int count = mp[c];
-            if(count>=1){
-                start = end+1;
-                mp[c]--;
-            }else
-            {
-                ans = max(end-start+1,ans);
-            }
+        mp[c]++;//如果c在mp中不存在，那么mp[c]会被初始化为0
+        while(mp[c]>1){//直到窗口合法
+            mp[s[start]]--;
+            start++;
         }
-        else
-        {
-            mp[c]=1;
-        } 
+        ans=max(ans,end-start+1);
     }
     return ans;
 }
