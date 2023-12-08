@@ -9,30 +9,65 @@
 
 
 #include<iostream>
+#include<vector>
+#include<cstring>
 using namespace std;
 
-string minWindow(string s, string t) {
-
+bool iSValid(vector<int>& s, vector<int>& t){//s要包含t
+    for(int i =0;i<52;i++){
+        if(s[i]<t[i]){
+            return false;
+        }
+    }
+    return true;
 }
 
-// 用i,j表示滑动窗口的左边界和右边界，通过改变i,j来扩展和收缩滑动窗口，
-// 可以想象成一个窗口在字符串上游走，当这个窗口包含的元素满足条件，即包含字符串T的所有元素，
-// 记录下这个滑动窗口的长度j-i+1，这些长度中的最小值就是要求的结果。
+int convertInt(char c){
+    if (c>='a'&& c<='z')
+    {
+        return c-'a';
+    }else if (c>='A' && c<='Z')
+    {
+        return 26+c-'A';
+    }
+    return -1;
+}
+string minWindow(string s, string t) {
+    vector<int> cntt(52,0);
+    vector<int> cnts(52,0);
+    for(int i =0;i<t.size();i++){
+        char c = t[i];
+        cntt[convertInt(c)]++;
+    }
+    int minLen = 0x3f3f3f3f;
+    int res[2];//存储最后结果的开始和结束下标
+    int start = 0;
+    for (int end = 0; end < s.size(); end++)
+    {
+        char c = s[end];
+        cnts[convertInt(c)]++;
+        while (iSValid(cnts, cntt))//有效的窗口
+        {
+            if (end-start+1<minLen)//如果更新窗口长度，也要更新存储结果的开始和结束下标
+            {
+                minLen=end-start+1;
+                res[0]=start;
+                res[1]=end;
+            }
+            cnts[convertInt(s[start])]--;
+            start++;
+        }
+    }
+    return s.substr(res[0],minLen);
+}
 
 // 步骤一
 // 不断增加j使滑动窗口增大，直到窗口包含了T的所有元素
 
 // 步骤二
-// 不断增加i使滑动窗口缩小，因为是要求最小字串，所以将不必要的元素排除在外，
-// 使长度减小，直到碰到一个必须包含的元素，这个时候不能再扔了，再扔就不满足条件了，
-// 记录此时滑动窗口的长度，并保存最小值
-
-// 步骤三
-// 让i再增加一个位置，这个时候滑动窗口肯定不满足条件了，
-// 那么继续从步骤一开始执行，寻找新的满足条件的滑动窗口，如此反复，直到j超出了字符串S范围。
+// 不断增加i使滑动窗口缩小，将不必要的元素排除在外，直到不能满足窗口包含T所有元素。
 
 
-TODO lc1248
 
 int main(){
     cout << minWindow("ADOBECODEBANC", "ABC");

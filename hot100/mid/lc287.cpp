@@ -9,13 +9,37 @@
 #include <vector>
 using namespace std;
 
-//环形链表
+//lc41 原地哈希
+//将[1,n]的数，分别放在 0,1,..n-1的位置上，n位置上的数就是多余的数
 int findDuplicate(vector<int>& nums) {
-    int n = nums.size();
-
-
+    int n = nums.size()-1;
+    for(int i = 0;i<=n;i++){//遍历数组所有元素
+        while(nums[i]!=i+1 && nums[i] !=nums[nums[i]-1]){//i=0时，nums[0]应该为1，i=1时,nums[i]应该为2
+            swap(nums[i], nums[nums[i]-1]);
+        }
+    }
+    return nums[n];
 }
-
+int findDuplicate_final(vector<int>& nums) {
+    int n = nums.size()-1;
+    for(int i = 0;i<=n;i++){//遍历数组所有元素
+        while(nums[i]!=i+1){//i=0时，nums[0]应该为1，i=1时,nums[i]应该为2
+            if (nums[i]==nums[nums[i]-1]&&nums[i]!=nums[nums[i]-1])
+            {
+                return nums[i];//提前return
+            }
+            else
+            {
+                swap(nums[i], nums[nums[i]-1]);//nums[i]应该放在nums[i]-1的下标
+            }
+        }
+    }
+    return nums[n];
+}
 int main(){
+    vector<int> a = {3,1,3,4,2};
+    cout << findDuplicate(a);
+    return 0;
 
 }
+
