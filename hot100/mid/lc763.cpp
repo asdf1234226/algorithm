@@ -24,20 +24,18 @@ vector<int> partitionLabels(string s) {
     for(int i =0;i<s.size();i++){
         last_index[s[i]-'a']=i;
     }
-    // for(int i =0;i<26;i++){
-    //     cout << last_index[i] << " ";
-    // }
+//     for(int i =0;i<26;i++){
+//         cout << last_index[i] << " ";
+//     }
 
     vector<int> ans;
-    int farthest = -1;
+    int farthest = 0;
     for(int i =0;i<s.size();i++){
+        farthest=max(farthest, last_index[s[i]-'a']);
         if (farthest==i)
         {
             ans.push_back(farthest);
             farthest=-1;
-        }else
-        {
-            farthest=max(farthest, last_index[s[i]-'a']);
         }
     }
     //ans存储分割点下标
@@ -58,7 +56,7 @@ vector<int> partitionLabels(string s) {
 }
 
 int main(){
-    string s = "ababcbacadefegdehijhklij";
+    string s = "caedbdedda";
     vector<int> a = partitionLabels(s);
     for(auto i: a){
         cout << i << " ";

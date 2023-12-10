@@ -58,7 +58,11 @@ string minWindow(string s, string t) {
             start++;
         }
     }
-    return s.substr(res[0],minLen);
+    if (minLen==0x3f3f3f3f){
+        return "";
+    }else{
+        return s.substr(res[0],minLen);
+    }
 }
 
 // 步骤一
@@ -70,6 +74,6 @@ string minWindow(string s, string t) {
 
 
 int main(){
-    cout << minWindow("ADOBECODEBANC", "ABC");
+    cout << minWindow("a", "aa");
     return 0;
 }

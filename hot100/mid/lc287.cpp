@@ -37,8 +37,8 @@ int findDuplicate_final(vector<int>& nums) {
     return nums[n];
 }
 int main(){
-    vector<int> a = {3,1,3,4,2};
-    cout << findDuplicate(a);
+    vector<int> a = {1,3,4,2,2};
+    cout << findDuplicate_final(a);
     return 0;
 
 }

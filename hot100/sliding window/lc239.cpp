@@ -13,11 +13,13 @@
 #include<vector>
 using namespace std;   
 
+//会TLE
 vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     int n = nums.size();
     priority_queue<int> pq;
     vector<int> ans;
     int start = 0;
+    queue<int> tmp;
     for(int end =0; end<n;end++){
         pq.push(nums[end]);
         if(end==k-1){
@@ -25,10 +27,24 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
             ans.push_back(top);
         }
         else if(end>k-1){
-            if (nums[start]==pq.top())//如果当前队列最大的元素正好是窗口中要被移除的nums[start]
-            {
+            ////不能这么移除，每次只能移除nums[start]对应的，所以要用queue暂存
+            while(!pq.empty()&&pq.top()>nums[start]){
+                int num = pq.top();
+                tmp.push(num);
                 pq.pop();
             }
+            if (!pq.empty()&&pq.top()==nums[start]){//移除nums[start]
+                pq.pop();
+            }
+            while(!tmp.empty()){
+                pq.push(tmp.front());
+                tmp.pop();
+            }
+            /////
+//            if (nums[start]==pq.top())//如果当前队列最大的元素正好是窗口中要被移除的nums[start]
+//            {
+//                pq.pop();
+//            }
             int top = pq.top();
             ans.push_back(top);
             start++;//维护窗口大小为k
@@ -66,8 +82,8 @@ vector<int> maxSlidingWindow_final(vector<int>& nums, int k)
     return results;
 }
 int main(){
-    vector<int> a = {1,3,-1,-3,5,3,6,7};
-    vector<int> ans = maxSlidingWindow_final(a,3);
+    vector<int> a = {9,10,9,-7,-4,-8,2,-6};
+    vector<int> ans = maxSlidingWindow(a,5);
     for (int i = 0; i < ans.size(); i++)
     {
         cout << ans[i] << " ";

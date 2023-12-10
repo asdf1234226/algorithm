@@ -14,17 +14,17 @@ using namespace std;
 //如何判断nums[i]是不是连续序列起点, nums[i]-1不在set中
 //如何判断终点 nums[i]+1不在set中，则nums[i]是终点
 int longestConsecutive(vector<int>& nums) {
+    if(nums.size()==0) return 0;
     set<int> st;
     for(auto num: nums){
         st.insert(num);
     }
     int ans = 1;
-    for (int i = 0; i < nums.size(); i++)
-    {
-        if (st.find(nums[i]-1)==st.end())//起点
+    for(auto i: st){
+        if (st.find(i-1)==st.end())//起点
         {
             int len = 0;
-            int target = nums[i];
+            int target = i;
             while (st.find(target)!=st.end())//到终点为止
             {
                 len++;
@@ -33,6 +33,20 @@ int longestConsecutive(vector<int>& nums) {
             }
         }
     }
+//    for (int i = 0; i < nums.size(); i++)
+//    {
+//        if (st.find(nums[i]-1)==st.end())//起点
+//        {
+//            int len = 0;
+//            int target = nums[i];
+//            while (st.find(target)!=st.end())//到终点为止
+//            {
+//                len++;
+//                target++;
+//                ans=max(ans,len);
+//            }
+//        }
+//    }
     return ans;
 }
 
