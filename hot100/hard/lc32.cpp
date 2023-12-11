@@ -46,7 +46,7 @@ int longestValidParentheses(string s) {
         return 0;
     }
     vector<int> res;
-    stack<char> st;
+    stack<int> st;
     for(int i=0;i<s.size();i++){
         if (s[i]=='(')
         {
@@ -55,6 +55,9 @@ int longestValidParentheses(string s) {
         {
             if(!st.empty()){
                 //添加匹配的'('和')'的位置
+                if (st.top()<0 || i <0){
+                    cout << "t " << st.top() << " i " << i;
+                }
                 res.push_back(st.top());
                 st.pop();
                 res.push_back(i);
@@ -66,6 +69,9 @@ int longestValidParentheses(string s) {
     if (res.size()==0)
     {
         return 0;
+    }
+    for (int i = 0; i < res.size(); ++i) {
+        cout << res[i]<< " ";
     }
     int len = 1;
     int ans = 0;
@@ -85,6 +91,7 @@ int longestValidParentheses(string s) {
 //方法二，动态规划
 int longestValidParentheses_dp(string s) {
     int n = s.size();
+    if(n==0) return 0;
     //dp[i]是以i为结尾的最长有效括号长度
     int dp[n];
     memset(dp, 0, sizeof dp);
@@ -117,7 +124,7 @@ int longestValidParentheses_dp(string s) {
 }
 
 int main(){
-    string s = ")(()())";
-    cout << longestValidParentheses_dp(s);
+    string s = ")(()(()(((())(((((()()))((((()()(()()())())())()))()()()())(())()()(((()))))()((()))(((())()((()()())((())))(())))())((()())()()((()((())))))((()(((((()((()))(()()(())))((()))()))())";
+    cout << longestValidParentheses(s);
     return 0;
 }
