@@ -48,3 +48,36 @@ int main(){
     cout << decodeString("3[a2[c]]");
     return 0;
 }
+
+public String decodeString(String s) {
+    Stack<Integer> numStack=new Stack<>();
+    Stack<String> strStack=new Stack<>();
+    String result="";
+    int num=0;
+    for(int i=0;i<s.length();i++){
+        if(s.charAt(i)>='0'&&s.charAt(i)<='9'){
+            num=num*10+s.charAt(i)-'0';//计算倍数
+        }
+        else if(s.charAt(i)=='['){
+            numStack.push(num);//入栈
+            num=0;//清零
+            strStack.push(result);//入栈
+            result="";
+        }
+        else if(s.charAt(i)==']'){
+            String temp="";
+            int times=numStack.pop();
+            for(int j=0;j<times;j++){
+                temp+=result;//res*出栈数字
+
+            }
+            result=strStack.isEmpty()?temp:strStack.pop()+temp;
+            //加完后如果栈空则为temp，栈不为空则将刚出栈res+当前res*刚出栈数字
+        }
+        else {
+            result+=s.charAt(i);
+        }
+    }
+    return result;
+
+}
