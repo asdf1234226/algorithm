@@ -39,7 +39,7 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         return (nums[(n+m)/2]+nums[(n+m-1)/2])/2.0;
     }else
     {
-        return nums[(n+m)/2]/2.0;
+        return nums[(n+m)/2]/1.0;
     }
 }
 
@@ -99,9 +99,9 @@ double findMedianSortedArrays_final(vector<int>& nums1, vector<int>& nums2){
 }
 
 int main(){
-    vector<int> a = {1,3,5};
-    vector<int> b ={2,5,9};
-    cout << findMedianSortedArrays_final(a,b);
+    vector<int> a = {1};
+    vector<int> b ={2,3};
+    cout << findMedianSortedArrays(a,b);
     return 0;
 }
 

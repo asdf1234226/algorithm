@@ -10,6 +10,8 @@
 
 #include<iostream>
 #include<vector>
+#include<queue>
+#include<map>
 using namespace std;
 
 int jump(vector<int>& nums) {
@@ -41,8 +43,63 @@ int jump(vector<int>& nums) {
     return step;
 }
 
+int jump_bfs(vector<int>& nums) {
+    int n = nums.size();
+    queue<int> q;
+    map<int,int> mp;
+    vector<int> visited(n, 0);
+    q.push(0);
+    mp[0]=0;
+    while (!q.empty())
+    {
+        int index = q.front();
+        q.pop();
+        int step = mp[index];
+        if (index>=n-1)
+        {
+            return step;
+        }
+        for (int i = 1; i <= nums[index]; i++)
+        {
+            int next = index+i;
+            if (next < n && !visited[next])
+            {
+                q.push(next);
+                visited[next] = 1;
+            }
+        } 
+    }
+    return -1;
+}
+
 int main(){
     vector<int> a = {3,2,1};
-    cout << jump(a);
+    cout << jump_bfs(a);
     return 0;
 }
+
+//     public int jump(int[] nums) {
+//         int n = nums.length;
+//         int ans = 0;
+//         boolean[] st = new boolean[n];
+//         Deque<Integer> d = new ArrayDeque<>();
+//         st[0] = true;
+//         d.addLast(0);
+//         while (!d.isEmpty()) {
+//             int size = d.size();
+//             while (size-- > 0) {
+//                 int idx = d.pollFirst();
+//                 if (idx == n - 1) return ans;
+//                 for (int i = idx + 1; i <= idx + nums[idx] && i < n; i++) {
+//                     if (!st[i]) {
+//                         st[i] = true;
+//                         d.addLast(i);
+//                     }
+//                 }
+//             }
+//             ans++;
+//         }
+//         return ans;
+//     }
+
+// https://leetcode.cn/problems/jump-game-ii/solutions/775090/gong-shui-san-xie-xiu-gai-shu-ju-fan-wei-wylq/

@@ -88,6 +88,46 @@ int longestValidParentheses(string s) {
     return ans;
 }
 
+////方法一优化
+// 1.从前往后扫描字符串 s。
+// 2.使用 i 来记录当前遍历到的位置，使用 j 来记录最近的最长有效括号的开始位置的「前一个位置」。
+// 3.只对 '(' 进行入栈（入栈的是对应的下标），当遍历到 ')' 的时候，由于栈中只有 '('，所以可以直接弹出
+// 一个 '(' 与之匹配（如果有的话）。
+// 4. 当栈不为空时，栈顶元素的下标表示最近一个未匹配的 "(" 的位置, 用来计算长度，栈空时只能用j计算
+
+int longestValidParentheses_opt(string s) {
+    int n = s.size();
+    stack<int> st;
+    int j = -1;
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i]=='(')
+        {
+            st.push(i);
+        }else
+        {
+            if(!st.empty()){
+                st.pop();
+                int index = j;
+                if(!st.empty()){
+                    index=st.top();
+                }
+                ans=max(ans,i-index);
+            }else
+            {
+                j=i;//栈空，没有'('能与s[i]的')'匹配
+            }      
+        }   
+    }
+    return ans;
+}
+
+
+
+
+
+
 //方法二，动态规划
 int longestValidParentheses_dp(string s) {
     int n = s.size();
@@ -125,6 +165,6 @@ int longestValidParentheses_dp(string s) {
 
 int main(){
     string s = ")(()(()(((())(((((()()))((((()()(()()())())())()))()()()())(())()()(((()))))()((()))(((())()((()()())((())))(())))())((()())()()((()((())))))((()(((((()((()))(()()(())))((()))()))())";
-    cout << longestValidParentheses(s);
+    cout << longestValidParentheses_opt(s);
     return 0;
 }
