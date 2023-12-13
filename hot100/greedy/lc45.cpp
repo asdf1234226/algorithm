@@ -47,7 +47,7 @@ int jump_bfs(vector<int>& nums) {
     int n = nums.size();
     queue<int> q;
     map<int,int> mp;
-    vector<int> visited(n, 0);
+    vector<bool> visited(n, false);
     q.push(0);
     mp[0]=0;
     while (!q.empty())
@@ -65,7 +65,8 @@ int jump_bfs(vector<int>& nums) {
             if (next < n && !visited[next])
             {
                 q.push(next);
-                visited[next] = 1;
+                mp[next]=step+1;
+                visited[next] = true;
             }
         } 
     }

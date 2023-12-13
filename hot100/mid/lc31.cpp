@@ -86,7 +86,7 @@ void nextPermutation(vector<int>& nums){
     }   
 }
 
-
+//有问题
 void nextPermutation_opt(vector<int>& nums){
     int n = nums.size();
     //从右边向左找第一个逆序对，交换就行了
