@@ -34,14 +34,14 @@ int myAtoi(string s) {
     {
         return 0;
     }
-    int sign = 1;
+    int sign = 1;//记录符号
     if(s[index]=='-'){
         sign=-1;
         index++;
     }else if (s[index]=='+')
     {
         index++;
-    }else if (s[index]<'0'||s[index]>'9')
+    }else if (s[index]<'0'||s[index]>'9')//如果去掉前导空格后，第一个字符不是-,+,还有0~9，就说明这个字符串无效
     {
         return 0;
     }
@@ -52,23 +52,26 @@ int myAtoi(string s) {
     }
     int res = 0;
     int boundary = INT_MAX/10;
+    //int的范围是-2147483648,2147483647
     while (index<n && s[index]>='0'&&s[index]<='9')
     {
         if (res<boundary||(res==boundary&&s[index]<'7'))
         {
-            res=res*10+s[index]-'0';
+            res=res*10+(s[index]-'0');
+            cout << res << " ";
+        }else if (res==boundary && s[index]<'8'&&sign==-1){//特殊处理"-2147483647"
+            res=res*10+(s[index]-'0');
         }else
-        {
+        {//越界
             return sign==1?INT_MAX:INT_MIN;
         }
         index++;
-        
     }
     return sign==1?res:-res;
 }
 
 
 int main(){
-    cout << myAtoi("-4214 s");
+    cout << myAtoi("-2147483647");
     return 0;
 }
