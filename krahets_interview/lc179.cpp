@@ -25,14 +25,15 @@ void quickSort(vector<string>& strs, int l ,int r){
     int mid = (l+r)>>1;
     while (i<j)
     {
-        while (strs[i]+strs[mid]<strs[mid]+strs[i])
+        while (i<j && strs[i]+strs[mid]<=strs[mid]+strs[i])
         {
             i++;
         }
-        while (strs[j]+strs[mid]>strs[mid]+strs[j])
+        while (i<j && strs[j]+strs[mid]>=strs[mid]+strs[j])
         {
             j--;
         }
+
         if(i<j){
             swap(strs[i], strs[j]);
         }
@@ -41,7 +42,7 @@ void quickSort(vector<string>& strs, int l ,int r){
     quickSort(strs,l,j);
     quickSort(strs,j+1,r);
 }
-
+//TODO FIX
 string largestNumber(vector<int>& nums) {
     int n = nums.size();
     vector<string> strs;
@@ -57,7 +58,7 @@ string largestNumber(vector<int>& nums) {
 }
 
 int main(){
-    vector<int> a = {3,30,34,5,9};
+    vector<int> a = {8308,8308,830};
     cout << largestNumber(a);
     return 0;
 }

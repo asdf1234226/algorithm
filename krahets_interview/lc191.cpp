@@ -14,7 +14,7 @@
 #include<iostream>
 using namespace std;
 
-int lowbit(int x){
+long lowbit(long x){
     return x&(-x);
 }
 int hammingWeight(uint32_t n) {

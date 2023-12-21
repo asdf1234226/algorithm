@@ -44,39 +44,43 @@ string reverseWords(string s) {
     }
     int n = s.size();
     vector<string> res;
-    for (int i = 0; i < n; i++)
-    {
-        int j = i;
-        while (j<n && s[j]!=' ')
-        {
-            j++;
-        }
-        res.push_back(s.substr(i,j-i));
-        i=j;//为什么不是i=j+1，因为外层for循环还有i++
-    }
-    // int i = 0;
-    // while (i<n)
-    // {
-    //     int j = i;
-    //     while (j<n && s[j]!=' ')
-    //     {
-    //         j++;
-    //     }
-    //     res.push_back(s.substr(i,j-i));
-    //     i=j+1;
-    // }
+//    for (int i = 0; i < n; i++)
+//    {
+//        int j = i;
+//        while (j<n && s[j]!=' ')
+//        {
+//            j++;
+//        }
+//        if(i!=j){
+//            res.push_back(s.substr(i,j-i));//防止加入空串
+//        }
+//        i=j;//为什么不是i=j+1，因为外层for循环还有i++
+//    }
+     int i = 0;
+     while (i<n)
+     {
+         int j = i;
+         while (j<n && s[j]!=' ')
+         {
+             j++;
+         }
+         if(i!=j){
+             res.push_back(s.substr(i,j-i));////防止加入空串
+         }
+         i=j+1;
+     }
     reverse(res.begin(),res.end());
     string ans = "";
     for(int i = 0; i<res.size()-1;i++){
         ans+=res[i];
-        ans+=" ";
+        ans+=",";
     }
     ans+=res[res.size()-1];
     return ans;
 }
 
 int main(){
-    string s = "  hello world aa ";
+    string s = "a good   example";
     cout << reverseWords(s);
     return 0;
 }

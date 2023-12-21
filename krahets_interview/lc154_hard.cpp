@@ -45,7 +45,7 @@ int findMin(vector<int>& nums) {
             r=mid-1;
         }
     }
-    int index = l==n-1?0:l+1;
+    int index = l==n-1?0:l+1;//应该返回nums[l+1],但是l=n-1时会数组越界，需要返回0
     return nums[index];
 }
 

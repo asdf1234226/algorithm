@@ -35,30 +35,37 @@ int nthUglyNumber(int n) {
     return -1;
 }
 
+//多指针
+//往后产生的丑数，都是已有丑数 × 质因数 2、3、5
+//初始化丑数列表，首个丑数是1， a,b,c都指向这个丑数
+// 下一个丑数如何产生   res[a]*2, res[b]*3, res[c]*5，这三个中的最小值
+//                  被选中的丑数指针++ (a++ or b++ or c++)
 int nthUglyNumber_opt(int n) {
-
+    int a = 0, b=0, c=0;
+    int idx = 0;
+    vector<int> res(n,0);
+    res[0]=1;
+    for(int i =1;i<n;i++){
+        int n2=res[a]*2;
+        int n3=res[b]*3;
+        int n5=res[c]*5;
+        res[++idx]= min(n2, min(n3,n5));
+        if (res[idx]==n2){
+            a++;
+        }
+        if (res[idx]==n3){
+            b++;
+        }
+        if(res[idx]==n5){
+            c++;
+        }
+    }
+    return res[n-1];
 }
 
 int main(){
-    cout << nthUglyNumber(10);
+    cout << nthUglyNumber_opt(10);
     return 0;    
 }
 
-    int nthUglyNumber(int n) {
-        // 存储丑数
-        int *arr = new int[n + 1];
-        arr[1] = 1;
-        
-        for (int x = 1, y = 1, z = 1, index = 2; index <= n; index++){
-            int a = arr[x] * 2, b = arr[y] * 3, c = arr[z] * 5;
-            int m = min(a, min(b, c));
-            if (m == a)x++;
-            if (m == b)y++;
-            if (m == c)z++;
-            arr[index] = m;
-        }
-        int ans = arr[n];
-        delete[] arr;
-        return ans;
-    }
 
