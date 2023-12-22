@@ -31,14 +31,33 @@ bool isSubsequence(string s, string t)
             
         }  
     }
-    return dp[m][n]==min(m,n);
-    
+    return dp[m][n]==min(m,n);   
+}
+
+//双指针简单遍历也可以
+bool isSubsequence_easy(string s, string t){
+    int m = s.size();
+    int n = t.size();
+    if(m==0) return true;
+    int i=0,j=0;
+    while (i<m && j<n)
+    {
+        if (s[i]==s[j])
+        {
+            i++;
+            j++;
+        }else
+        {
+            j++;
+        }
+    }
+    return i==m;
 }
 
 int main(){
     string s = "abc";
     string t = "ahbgdc";
-    if (isSubsequence(s,t))
+    if (isSubsequence_easy(s,t))
     {
         cout << "y";
     }else

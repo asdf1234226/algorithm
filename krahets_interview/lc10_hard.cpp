@@ -39,46 +39,44 @@ using namespace std;
 // s[i]匹配p[j-1]又可以写成s[i]==p[j-1] || p[j-1]='.'
 
 bool isMatch(string s, string p) {
-        s ="0"+s;
-        p="0"+p;
-        int m = s.size();
-        int n = p.size();
-        //dp[i][j]定义为s的前i个字母和p的前j个字母是否匹配
-        bool dp[m+1][n+1];
-        memset(dp,0,sizeof dp);
-        dp[0][0]=true;
-        for (int i = 1; i <= m; i++)
+    s ="0"+s;
+    p="0"+p;
+    int m = s.size();
+    int n = p.size();
+    //dp[i][j]定义为s的前i个字母和p的前j个字母是否匹配
+    bool dp[m+1][n+1];
+    memset(dp,0,sizeof dp);
+    dp[0][0]=true;
+    for (int i = 1; i <= m; i++)
+    {
+        for (int j = 1; j <= n; j++)
         {
-                for (int j = 1; j <= n; j++)
-                {
-                        // 如果下一个字符是 '*'，则代表当前字符不能被单独使用，跳过
-                        if (j+1<=n && p[j+1]=='*' && p[j]!='*')
-                        {
-                                continue;
-                        }          
-                        if (p[j]=='.')
-                        {
-                                dp[i][j]=dp[i-1][j-1];
-                                
-                        }else if (p[j]=='*')
-                        {
-                                dp[i][j]=(j-2>=0)&& dp[i][j-2] || (dp[i-1][j] && (s[i]==p[j-1]||p[j-1]=='.'));
-                        }else//p[j]是字母
-                        {
-                                dp[i][j]=dp[i-1][j-1]&&s[i]==p[j];
-                        }                  
-                }
+        // 如果下一个字符是 '*'，则代表当前字符不能被单独使用，跳过
+            if (j+1<=n && p[j+1]=='*' && p[j]!='*')
+            {
+                continue;
+            }          
+            if (p[j]=='.')
+            {
+                dp[i][j]=dp[i-1][j-1];        
+            }else if (p[j]=='*')
+            {
+                dp[i][j]=(j-2>=0)&& dp[i][j-2] || (dp[i-1][j] && (s[i]==p[j-1]||p[j-1]=='.'));
+            }else//p[j]是字母
+            {
+                dp[i][j]=dp[i-1][j-1]&&s[i]==p[j];
+            }                  
         }
-        return dp[m][n];  
+    }
+    return dp[m][n];  
 }
 
 int main(){
-
-        if (isMatch("cdaa","cda*"))
-        {
-                cout << "match";
-        }
-        return 0;
+    if (isMatch("cdaa","cda*"))
+    {
+        cout << "match";
+    }
+    return 0;
 }
 
 
