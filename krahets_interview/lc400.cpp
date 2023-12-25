@@ -31,7 +31,7 @@ int findNthDigit(int n) {
     }
     //这样跳出循环时，第n个数字所在的元素长度是digitLen-1
     int len = digitLen-1;
-    count -=(digitLen-1)*(multi/10);
+   
     
     //所在元素是
     
