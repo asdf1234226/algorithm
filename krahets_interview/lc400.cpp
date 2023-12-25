@@ -19,25 +19,30 @@
 
 // 9*1+90*2+900*3+9000*4...
 
+#include<iostream>
+using namespace std;
+
+
 int findNthDigit(int n) {
-    int digitLen = 1; //
-    int count = 0; //总个数
-    int multi = 9;  
-    while (count<=n)
-    {
-        count+=digitLen*multi;
-        multi*=10;
+    int count = 9;  //总个数
+    int digitLen = 1; //数字长度
+    int start = 1;  
+    while(n>count){
+        n-=count;
         digitLen++;
+        start*=10;
+        count=start*digitLen*9;
     }
-    //这样跳出循环时，第n个数字所在的元素长度是digitLen-1
-    int len = digitLen-1;
-   
-    
-    //所在元素是
-    
-    
+    //所在元素
+    //为什么用n-1不用n，假如是100的最后一个0，此时n为3，如果用n则n/3=1，会算到num是101这个数，index是0（结果是101的百位的1）
+    //                 假如是100的1，此时n为1,会算到num是100，但是index是1(100中十位上的0)
+    // 为了n从1到digitLen都要落在同一个num上，要对应n-1； 同时因为下面用string的index， 所以index要对应n-1
+    long num = start + n/digitLen;
+    int index =n%digitLen;
+    return to_string(num)[index]-'0';
+}
 
-
-    
-
+int main(){
+    cout << findNthDigit(11);
+    return 0;
 }
