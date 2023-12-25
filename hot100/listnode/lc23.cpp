@@ -55,7 +55,7 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
 //如果归并合并，每条链表平均合并logK次
 
 ListNode* merge(vector<ListNode*>& lists, int l, int r){
-    if (l>=r)
+    if (l==r)
     {
         return lists[l];
     }

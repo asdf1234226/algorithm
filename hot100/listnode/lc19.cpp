@@ -8,6 +8,7 @@
 //快慢指针
 //判断环出现了一种表现形式，fast每次移动2，slow每次移动1
 //这是另一种形式，fast先走n步，然后fast和slow每次移动1
+//[1,2,3,4,5], n = 2
 ListNode* removeNthFromEnd(ListNode* head, int n){
     ListNode* fast = head;
     ListNode* slow = head;

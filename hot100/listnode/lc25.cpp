@@ -27,8 +27,8 @@ ListNode* reverseKGroup(ListNode* head, int k) {
         cur=cur->next;
     }
     end->next=nullptr;//1.前k个节点断开
-    ListNode* nextHead = reverseList(head);
-    end = nextHead;//翻转后链表的尾节点
+    ListNode* nextHead = reverseList(head);//第一组链表翻转后的头节点
+    end = nextHead;//找到第一组链表翻转后的尾节点
     while(end->next){
         end=end->next;
     }

@@ -37,8 +37,8 @@ int findNthDigit(int n) {
     //为什么用n-1不用n，假如是100的最后一个0，此时n为3，如果用n则n/3=1，会算到num是101这个数，index是0（结果是101的百位的1）
     //                 假如是100的1，此时n为1,会算到num是100，但是index是1(100中十位上的0)
     // 为了n从1到digitLen都要落在同一个num上，要对应n-1； 同时因为下面用string的index， 所以index要对应n-1
-    long num = start + n/digitLen;
-    int index =n%digitLen;
+    long num = start + (n-1)/digitLen;
+    int index =(n-1)%digitLen;
     return to_string(num)[index]-'0';
 }
 
