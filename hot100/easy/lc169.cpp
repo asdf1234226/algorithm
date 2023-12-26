@@ -22,8 +22,17 @@ int getMost(vector<int>& nums){
             }
         }
     }
+    //检验是否满足条件  （非必要，因为题目已经说明总是存在）
+    count = 0;
+    for(auto it: nums){
+        if(target==it){
+            count++;
+        }
+    }
+    return count>n/2?target:-1;
     return target;
 }
+//TODO 应该要验证的吧
 
 
 int main(){
