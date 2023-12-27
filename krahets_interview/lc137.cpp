@@ -24,11 +24,11 @@ using namespace std;
 int singleNumber(vector<int>& nums) {
     int n = nums.size();
     vector<int> count(32,0);
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < 32; i++)
     {
-        for(int j = 0;j<32;j++){
-            count[j]+=nums[i]&1;
-            nums[i]>>=1;
+        for(auto& num: nums){
+            count[i]+=num&1;
+            num >>= 1;
         }
     }
     int ans = 0;
@@ -41,7 +41,6 @@ int singleNumber(vector<int>& nums) {
         t<<=1;
     }   
     return ans;
-
 }
 
 int main(){

@@ -73,7 +73,7 @@ string reverseWords(string s) {
     string ans = "";
     for(int i = 0; i<res.size()-1;i++){
         ans+=res[i];
-        ans+=",";
+        ans+=" ";
     }
     ans+=res[res.size()-1];
     return ans;

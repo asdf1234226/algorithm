@@ -38,9 +38,22 @@ int maxSubArray(vector<int>& nums) {
     //还有全是负数的情况
 }
 
+int maxSubArray_opt(vector<int>& nums){
+    int n = nums.size();
+    vector<int> dp(n,0);
+    //dp[i]以 i 下标为结尾的连续子数组最大和
+    dp[0]= nums[0];
+    int ans = -0x3f3f3f3f;
+    for (int i = 1; i < n; i++)
+    {
+        dp[i]=max(dp[i-1]+nums[i], nums[i]);
+        ans=max(ans,dp[i]);
+    }
+    return ans;
+}
 
 int main(){
     vector<int> a ={-2,1,-3,4,-1,2,1,-5,4};
-    cout << maxSubArray(a);
+    cout << maxSubArray_opt(a);
     return 0;
 }

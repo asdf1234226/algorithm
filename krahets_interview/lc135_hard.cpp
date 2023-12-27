@@ -57,7 +57,6 @@ int candy(vector<int>& ratings) {
         count+=max(left[i], right[i]);
     }
     return count;
-
 }
 
 int main(){

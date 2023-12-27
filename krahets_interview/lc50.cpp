@@ -10,23 +10,24 @@ using namespace std;
 //3=2^0+2^1
 //11=2^0+2^1+2^3
 double myPow(double x, int n) {
-    if (n<0)//幂指数为负数的情况
+    long n1 = n;
+    if (n1<0)//幂指数为负数的情况
     {
-        n=-n;
+        n1=-n1;
         x=1/x;
     }
     double res = 1.0;
 //    1. 当 n&1=1 时：将当前 x 乘入 res。
 //    2. 执行x=x^2。
 //    3. n右移。
-    while (n>0)
+    while (n1>0)
     {
-        if (n&1==1)
+        if (n1&1==1)
         {
             res*=x;
         }
         x*=x;
-        n>>=1;
+        n1>>=1;
     }
     return res;
 }
