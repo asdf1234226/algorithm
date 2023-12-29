@@ -26,6 +26,55 @@ void print_node(ListNode* head){
     }
 }
 
+ListNode* reverseList(ListNode* head){
+    ListNode* pre = nullptr;
+    //pre->next=head; //不能加这个
+    ListNode* cur = head;
+    while (cur)
+    {
+        ListNode* tmp = cur->next;
+        cur->next=pre;
+        pre=cur;
+        cur=tmp;
+    }
+    return pre;
+}
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    int add = 0; //进位
+    ListNode* dummy = new ListNode(-1);
+    ListNode* cur = dummy;
+    while (l1 || l2)
+    {
+        int sum = add;
+        if (l1)
+        {
+            sum+=l1->val;
+            l1=l1->next;
+        }
+        if (l2)
+        {
+            sum+=l2->val;
+            l2=l2->next;
+        }
+        cur->next=new ListNode(sum%10);
+        add=sum/10;
+        cur=cur->next;
+    }
+    if (add)
+    {
+        cur->next=new ListNode(add);
+    }
+    //return dummy->next;
+    return reverseList(dummy->next);
+}
 
+int main(){
+    ListNode* h1 = new ListNode(7);
+    h1->next=new ListNode(1);
+    h1->next->next=new ListNode(6);
+    ListNode* h2 = new ListNode(5);
+    h2->next=new ListNode(9);
+    h2->next->next=new ListNode(2);
+    print_node(addTwoNumbers(h1,h2));
+    return 0;
 }
