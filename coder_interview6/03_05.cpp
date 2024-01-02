@@ -35,10 +35,15 @@ public:
     }
     
     void pop() {
-        st.pop();
+        if (!st.empty()) {
+            st.pop();
+        }
     }
     
     int peek() {
+        if (st.empty()) {
+            return -1;
+        }
         return st.top();
     }
     

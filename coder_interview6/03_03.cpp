@@ -38,6 +38,10 @@ public:
     }
     
     void push(int val) {
+        if (capacity==0)//判断容量为0的特殊情况
+        {
+            return;
+        }
         if (vec.empty() || vec.back().size()==capacity)
         //没栈要新建栈; vec中最后一个栈满了也要新建栈
         {

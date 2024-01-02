@@ -74,7 +74,8 @@ public:
                 return -1;
             }else
             {
-                return nums[index0--];
+                index0--;
+                return nums[index0];
             }
         }else if (stackNum==1)
         {
@@ -83,7 +84,8 @@ public:
                 return -1;
             }else
             {
-                return nums[index1--];
+                index1--;
+                return nums[index1];
             }
         }else
         {
@@ -92,7 +94,8 @@ public:
                 return -1;
             }else
             {
-                return nums[index2--];
+                index2--;
+                return nums[index2];
             }
         }
     }
@@ -105,7 +108,7 @@ public:
                 return -1;
             }else
             {
-                return nums[index0];
+                return nums[index0-1];
             }
         }else if (stackNum==1)
         {
@@ -114,7 +117,7 @@ public:
                 return -1;
             }else
             {
-                return nums[index1];
+                return nums[index1-1];
             }
         }else
         {
@@ -123,7 +126,7 @@ public:
                 return -1;
             }else
             {
-                return nums[index2];
+                return nums[index2-1];
             }
         }
     }

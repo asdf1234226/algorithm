@@ -21,19 +21,20 @@
 
 
 #include<iostream>
+#include<queue>
 #include<stack>
 #include<vector>
 using namespace std;
 
 class AnimalShelf {
 public:
-    stack<vector<int>> st;
+    deque<vector<int>> st;
     AnimalShelf() {
 
     }
     
     void enqueue(vector<int> animal) {
-        st.push(animal);
+        st.push_back(animal);
     }
     
     vector<int> dequeueAny() {
@@ -41,8 +42,8 @@ public:
         {
             return vector<int>{-1,-1};
         }
-        vector<int> a = st.top();
-        st.pop();
+        vector<int> a = st.front();
+        st.pop_front();
         return a;
     }
     
@@ -53,10 +54,11 @@ public:
         {
             return res;
         }
-        while (!st.empty() && st.top()[1]==0)
+        
+        while (!st.empty() && st.front()[1]==0)
         {
-            help.push(st.top());
-            st.pop();
+            help.push(st.front());
+            st.pop_front();
         }
         
         if (st.empty())//没有狗
@@ -64,12 +66,12 @@ public:
 
         }else//有狗
         {
-            res=st.top();
-            st.pop();
+            res=st.front();
+            st.pop_front();
         }
         while (!help.empty())
         {
-            st.push(help.top());
+            st.push_front(help.top());
             help.pop();
         }
         return res;
@@ -82,10 +84,10 @@ public:
         {
             return res;
         }
-        while (!st.empty() && st.top()[0]==0)
+        while (!st.empty() && st.front()[1]==1)
         {
-            help.push(st.top());
-            st.pop();
+            help.push(st.front());
+            st.pop_front();
         }
         
         if (st.empty())//没有猫
@@ -93,14 +95,27 @@ public:
 
         }else//有猫
         {
-            res=st.top();
-            st.pop();
+            res=st.front();
+            st.pop_front();
         }
         while (!help.empty())
         {
-            st.push(help.top());
+            st.push_front(help.top());
             help.pop();
         }
         return res;
     }
 };
+
+int main(){
+    AnimalShelf aa;
+    aa.enqueue({0,0});
+    aa.enqueue({1,0});
+    vector<int> cat = aa.dequeueCat();
+    cout << cat[0] << ":" << cat[1]<< endl;
+    vector<int> dog = aa.dequeueDog();
+    cout << dog[0] << ":" << dog[1]<<endl;
+    vector<int> an = aa.dequeueAny();
+    cout << an[0] << ":" << an[1]<<endl;
+
+}
