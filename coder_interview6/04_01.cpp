@@ -47,7 +47,7 @@ bool dfs(int start, int target){
     return canReach;
 }
 bool findWhetherExistsPath(int n, vector<vector<int>>& graph, int start, int target) {
-    memset(e,-1,sizeof h); //初始化链表指向-1（相当于nullptr）
+    memset(h,-1,sizeof h); //初始化链表指向-1（相当于nullptr）
     for(auto it: graph){//存图
         add(it[0],it[1]);
     }

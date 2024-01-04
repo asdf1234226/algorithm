@@ -42,5 +42,35 @@ struct TreeNode
 };
 
 vector<ListNode*> listOfDepth(TreeNode* tree) {
-
+    queue<TreeNode*> q;
+    vector<ListNode*> res;
+    q.push(tree);
+    while (!q.empty())
+    {
+        int size = q.size();
+        while (size>0)
+        {
+            vector<int> vec;
+            size--;
+            ListNode* pre = nullptr;
+            ListNode* cur = pre;
+            for (int i = 0; i < size; i++)
+            {
+                TreeNode* nod = q.front();
+                q.pop();
+                if(nod->left){
+                    q.push(nod->left);
+                }
+                if (nod->right)
+                {
+                    q.push(nod->right);
+                }
+                vec.push_back(nod->val);
+                cur->next=new ListNode(vec[i]);
+            }
+            cur->next=nullptr;
+            res.push_back(pre->next);
+        }
+        return res;
+    }
 }
