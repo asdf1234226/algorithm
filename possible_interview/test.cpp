@@ -1,11 +1,13 @@
 #include <iostream>
 #include<string>
 #include <regex>
+
 const char  *szRegSpecialChars = "\\^$.-[]|()+{}*?";
 
 std::string RegQuote(const std::string& text)
 {
-    std::string strRet;
+	std::string strRet;
+
 	const char* p = text.c_str();
 	const char *start_position = text.c_str();
 	while(*p != 0)
@@ -53,12 +55,12 @@ std::string RegQuote(const std::string& text)
 		p++;
 	}
 
-	return "(^" + strRet + "$)";
+	return strRet;
 }
 int main() {
-    std::string re = RegQuote("*\?0*");
+    std::string re = "(^" + RegQuote("*\?0*") + "$)";
     std::cout << re << std::endl;
-    re = "^.*\\?0.*$";
+    //re = "^.*\\?0.*$";
     std::string s = "\?0";
     std::regex e(re);  // 注意这里的转义字符
 
