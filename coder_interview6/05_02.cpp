@@ -18,6 +18,7 @@
 using namespace std;
 
 string printBin(double num) {
+    // 这个应该和01背包问题不一样，这个更类似计算二进制？？
     vector<double> a = {0.5,0.25,0.125,0.0625,0.03125,0.015625};
     string res = "0.";
     for (int i = 0; i < 6; i++)

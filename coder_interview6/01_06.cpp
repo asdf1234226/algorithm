@@ -27,7 +27,7 @@ string compressString(string S) {
         count = 0;//清空count
         i=j;//更新下一轮i
     }
-    return ans;
+    return ans.size()<n?ans:S;
 }
 
 int main(){

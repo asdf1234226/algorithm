@@ -31,6 +31,7 @@ ListNode* removeDuplicateNodes(ListNode* head) {
     ListNode* cur = head;
     set<int> st;
     st.insert(cur->val);
+    if(head==nullptr) return head;
     while (cur->next!=nullptr)
     {
         if (st.find(cur->next->val)!=st.end())//已经出现过，要删除

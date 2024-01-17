@@ -9,7 +9,7 @@
 #include<cstring>
 using namespace std;
 
-const int N = 1010;
+const int N = 2010;
 int degree[N];
 //TODO   这个忘了应该用入度来做了
 bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {

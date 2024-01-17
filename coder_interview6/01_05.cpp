@@ -20,7 +20,8 @@ using namespace std;
 //        a.插入/删除  长度差1  ---  等价于对短的插入
 //        c.替换  长度相同
 bool oneEditAway(string first, string second) {
-    string shorter = first.size()<second.size()?first:second;
+    //first.size()==econd.size()时要保证一个shorter和longer取不同的
+    string shorter = first.size()<=second.size()?first:second;
     string longer = first.size()>second.size()?first:second;
     int n1 = shorter.size();
     int n2 = longer.size();

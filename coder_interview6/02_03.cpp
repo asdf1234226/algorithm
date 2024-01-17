@@ -24,6 +24,12 @@ void print_node(ListNode* head){
     }
 }
 
+//这么出题有点抽象？？
+void deleteNode_final(ListNode* node) {
+    //鸠占鹊巢
+    node->val=node->next->val;
+    node->next=node->next->next;
+}
 void deleteNode(ListNode* head, ListNode* node) {
     ListNode* cur = head;
     while (cur->next!=nullptr)

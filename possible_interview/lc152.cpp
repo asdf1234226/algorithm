@@ -14,9 +14,16 @@ int maxProduct(vector<int>& nums){
     int n = nums.size();
     vector<int> dp(n,1);
     dp[0]=nums[0];
-    int ans = -0x3f3f3f3f;
+    int ans = nums[0];
+//    for(int i=1;i<n;i++){
+//        dp[i]=max(nums[i],dp[i-1]*nums[i]);
+//    }
+    //因为负数*负数也可能是最大值，所以也要维护最小乘积
+    vector<int> dp1(n,1);//存放最小乘积
+    dp1[0] = nums[0];
     for(int i=1;i<n;i++){
-        dp[i]=max(nums[i],dp[i-1]*nums[i]);
+        dp[i]= max(dp[i-1]*nums[i], max(dp1[i-1]*nums[i], nums[i]));
+        dp1[i]=min(dp[i-1]*nums[i], min(dp1[i-1]*nums[i], nums[i]));
     }
     for(int i=1;i<n;i++){
         ans=max(ans,dp[i]);

@@ -17,7 +17,7 @@ int coinChange(vector<int>& coins, int amount) {
             dp[j]=min(dp[j-coins[i]]+1, dp[j]);//拿不拿
         }
     }
-    return dp[amount];
+    return dp[amount]==0x3f3f3f3f?-1:dp[amount];
 }
 
 int main(){

@@ -43,7 +43,7 @@ bool isUnique_opt(string astr){
         }
         
     }
-    return false;
+    return true;
 }
 
 int main(){

@@ -27,6 +27,7 @@ int search(vector<int>& nums, int target) {
     //1.旋转点，左边满足>=nums[0]
     int n = nums.size();
     if(n==0) return -1;
+    if(n==1) return nums[0]==target?0:-1;//判断边界
     int l=0,r=n-1;
     while (l<r)
     {

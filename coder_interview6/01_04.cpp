@@ -9,6 +9,8 @@
 #include<vector>
 using namespace std;
 
+//还有输入是这样？？    "AaBb//a"
+//可以改用map
 bool canPermutePalindrome(string s) {
     vector<int> cnt(26,0);
     for(auto it: s){

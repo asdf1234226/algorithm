@@ -14,6 +14,9 @@ using namespace std;
 //贪心 
 //动规
 bool canJump(vector<int>& nums) {
+    if(nums.size()==1){
+        return true;
+    }
     int cover = nums[0];//能覆盖的最大范围
     for(int i=1;i<=cover;i++){
         if (cover>=nums.size()-1) 

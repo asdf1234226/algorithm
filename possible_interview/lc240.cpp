@@ -13,10 +13,10 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
             return true;
         }else if (matrix[i][j]<target)
         {
-            j--;
+            i++;
         }else
         {
-            i++;
+            j--;
         }
     }
     return false;

@@ -37,6 +37,7 @@ public:
     int pop() {
         int x = st1.top();
         st1.pop();
+        return x;
     }
     
     int peek() {
