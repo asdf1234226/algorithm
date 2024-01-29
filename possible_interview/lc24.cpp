@@ -7,12 +7,14 @@ ListNode* swapPairs(ListNode* head) {
     ListNode* pre = new ListNode(-1);
     pre->next=head;
     ListNode* cur = pre;
-    while(cur && cur->next){
-        ListNode* l2 = cur->next;
-        ListNode* l3 = cur->next->next;
-        
+    while(cur && cur->next && cur->next->next){
+        ListNode* l1 = cur->next;
+        ListNode* l2 = cur->next->next;
+        ListNode* l3 = cur->next->next->next;
+        cur->next=l2;
         l2->next=l1;
         l1->next=l3;
-        cur=l3;
+        cur=l2;//TODO cur=cur->next->next还是l2
     }
+    return pre->next;
 }
