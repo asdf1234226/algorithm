@@ -22,10 +22,12 @@ bool help(TreeNode* left, TreeNode* right){
         return false;
     }else
     {
+        if (left->val != right->val)
+        {
+            return false;
+        }
         return help(left->left,right->right) && help(left->right, right->left);
     }
-    
-    
     
 }
 
