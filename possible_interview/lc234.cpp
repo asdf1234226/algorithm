@@ -33,7 +33,7 @@ bool isPalindrome(ListNode* head) {
     }
     //翻转后半段链表，然后比较
     fast = head;
-    slow = reverseList(slow->next);
+    slow = reverseList(slow);
     while (slow)
     {
         if (slow->val!=fast->val)
@@ -43,5 +43,18 @@ bool isPalindrome(ListNode* head) {
         slow=slow->next;
         fast=fast->next;
     }
-    return false;
+    return true;
+}
+
+int main(){
+    ListNode* h = new ListNode(1);
+    h->next=new ListNode(2);
+    if (isPalindrome(h))
+    {
+        cout << "y";
+    }else
+    {
+        cout << "n";
+    }
+    return 0;
 }

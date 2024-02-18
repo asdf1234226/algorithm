@@ -20,11 +20,11 @@ int longestValidParentheses(string s) {
     {
         if (s[i]==')')
         {
-            if (i>=2 && s[i-1]=='(')
+            if (s[i-1]=='(')
             {
-                dp[i]=dp[i-2]+2;
+                dp[i]=i>=2?dp[i-2]+2:2;//TODO 测试用例"()"要特判
             }
-            if (i>=2 && s[i-1]==')')
+            if (s[i-1]==')')
             {
                 if (i-dp[i-1]-1>=0&& s[i-dp[i-1]-1]=='(')
                 {

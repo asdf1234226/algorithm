@@ -50,7 +50,8 @@ vector<int> inorderTraversal_iter(TreeNode* root) {
         res.push_back(cur->val);
         st.pop();
         cur=cur->right;
-    }    
+    }
+    return res;    
 }
 
 int main() {
