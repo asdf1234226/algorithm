@@ -18,6 +18,7 @@ struct TreeNode
 vector<int> rightSideView(TreeNode* root) {
     queue<TreeNode*> q;
     vector<int> res;
+    if(root==nullptr) return res;//判空
     q.push(root);
     while (!q.empty())
     {

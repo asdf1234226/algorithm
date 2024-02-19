@@ -31,6 +31,7 @@ void dfs(string digits, int start){
     }
 }
 vector<string> letterCombinations(string digits) {
+    if (digits=="") return res;
     dfs(digits,0);
     return res;
 }

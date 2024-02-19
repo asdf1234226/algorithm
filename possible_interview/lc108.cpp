@@ -16,9 +16,10 @@ struct TreeNode
 };
 
 TreeNode* help(vector<int>& nums, int l, int r){
+    if(l>r) return nullptr;// TODO   需要注意这个判断
     int mid = (l+r)>>1;
     TreeNode* root = new TreeNode(nums[mid]);
-    root->left = help(nums,l,mid);
+    root->left = help(nums,l,mid-1);
     root->right = help(nums,mid+1,r);
     return root;
 }

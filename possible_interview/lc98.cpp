@@ -12,8 +12,8 @@ struct TreeNode
         right=nullptr;
     }
 };
-
-int max_v = -0x3f3f3f3f;//左子树最大值
+//用long是为了判断特例
+long max_v = LONG_MIN;//左子树最大值
 bool isValidBST(TreeNode* root){
     if (root==nullptr)
     {

@@ -45,6 +45,7 @@ void nextPermutation(vector<int>& nums) {
     } 
 }
 
+//TODO  123 --> 132
 int main(){
     vector<int> a ={3,1,6,4,2,1};
     nextPermutation(a);

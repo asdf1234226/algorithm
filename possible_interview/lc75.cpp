@@ -30,7 +30,7 @@ void sortColors(vector<int>& nums) {
     
     l = 0;
     r=n-1;
-    while (nums[l]==0)
+    while (l<r && nums[l]==0)//TODO  注意数据越界
     {
         l++;
     }
@@ -55,7 +55,7 @@ void sortColors(vector<int>& nums) {
 }
 
 int main(){
-    vector<int> a = {2,0,2,1,1,0};
+    vector<int> a = {0,0};
     sortColors(a);
     for (int i = 0; i < a.size(); i++)
     {

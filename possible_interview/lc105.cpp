@@ -25,7 +25,8 @@ TreeNode* helpBuild(vector<int>& preorder,int prel, int prer, vector<int>& inord
     TreeNode* root = new TreeNode(rootV);
     int index = -1;
     //这个可以统一将inorder建一个map存储
-    for(int i=inl;i<inr;i++){
+    for(int i=inl;i<=inr;i++){
+        //TODO  这个for循环是i=inl;i<=inr
         if (rootV==inorder[i])
         {
             index=i;
