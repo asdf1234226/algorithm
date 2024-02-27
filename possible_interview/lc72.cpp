@@ -22,9 +22,8 @@ using namespace std;
 //dp[i][j]表示word1的前i个和word2的前j个的最小距离
 // word1[i-1]==word2[j-1]  dp[i][j]=dp[i-1][j-1]
 //           !=            替换 dp[i][j]=dp[i-1][j-1]+1;
-//                         插入 dp[i][j]=dp[i][j-1]+1
+//                         插入 dp[i][j]=dp[i][j-1]+1  //word1插入一个等价于word2删除一个
 //                         删除 dp[i][j]=dp[i-1][j]+1    //abc  ac
-//在 word1 中删除一个字符后，word1 的长度变为 i-1;  word1 的前 i-1 个字符和 word2 的前 j 个字符的编辑距离
 int minDistance(string word1, string word2) {
     int m = word1.size();
     int n = word2.size();
