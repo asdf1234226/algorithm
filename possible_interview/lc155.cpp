@@ -31,7 +31,7 @@ public:
     
     void pop() {
         if(!st.empty()&& st.top()==help.top()){
-            help.top();
+            help.pop();
         }
         st.pop();
     }
