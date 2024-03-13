@@ -12,9 +12,27 @@ int minSubArrayLen(int target, vector<int>& nums) {
     int n = nums.size();
     int start = 0;
     int sum = 0;
+    int ans = 0x3f3f3f3f;
     for(int i=0;i<nums.size();i++){
         sum+=nums[i];
-        while()
+        while (sum>target)
+        {
+            sum -= nums[start];
+            start++;
+        }
+        if (sum==target)
+        {
+            ans = min(ans,i-start+1);
+        }else
+        {
+            continue;
+        }
     }
+    return ans;
+}
 
+int main(){
+    vector<int> a = {2,3,1,2,4,3};
+    cout << minSubArrayLen(7, a);
+    return 0;
 }
