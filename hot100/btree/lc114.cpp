@@ -25,16 +25,16 @@ struct TreeNode{
 
 void flatten(TreeNode* root) {
     while(root){
-        if(root->left== nullptr){
+        if(root->left== nullptr){//如果没有左节点，就继续
             root=root->right;
         } else{
-            TreeNode* pre = root->left;
+            TreeNode* pre = root->left;//有左节点
             while (pre->right){
-                pre=pre->right;
+                pre=pre->right;//左节点的最右子节点
             }
-            pre->right=root->right;
-            root->right=root->left;
-            root->left= nullptr;
+            pre->right=root->right;//拼接
+            root->right=root->left;//转到右子树
+            root->left= nullptr;//置左指针空
             root=root->right;
         }
     }

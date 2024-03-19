@@ -14,7 +14,7 @@ public:
         for(int i=0;i<word.size();i++){
             int u = word[i]-'a';
             if(!son[p][u]){
-                son[p][u]=idx++;
+                son[p][u]=++idx;//注意第一个点是1，不能是idx++
             }
             p=son[p][u];
         }

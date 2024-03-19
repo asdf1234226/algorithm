@@ -24,7 +24,7 @@ int findDuplicate_final(vector<int>& nums) {
     int n = nums.size()-1;
     for(int i = 0;i<=n;i++){//遍历数组所有元素
         while(nums[i]!=i+1){//i=0时，nums[0]应该为1，i=1时,nums[i]应该为2
-            if (nums[i]==nums[nums[i]-1]&&nums[i]!=nums[nums[i]-1])
+            if (nums[i]==nums[nums[i]-1])
             {
                 return nums[i];//提前return
             }
