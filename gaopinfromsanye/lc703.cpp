@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
 {
     vector<int> num = {4,5,8,2,10,3};
     int k = 3;
-    KthLargest kth = KthLargest(k, num);
+    KthLargest kth = KthLargest(k, num);  
     cout << kth.pq.top() << endl;
     return 0;
 }

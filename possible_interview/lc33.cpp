@@ -7,6 +7,7 @@ using namespace std;
 
 //左半段满足nums[mid]<=target
 int help(vector<int>& nums, int left, int right, int target){
+    if(left>right) return -1;//要做判断
     int l =left,r=right;
     while (l<r)
     {
@@ -42,6 +43,7 @@ int search(vector<int>& nums, int target) {
     //2.二分查找左半段还是右半段
     int index=help(nums,0,l,target);
     if(index==-1){
+        //或者在这要判断l+1<=n-1
         index=help(nums,l+1,n-1,target);
     }
     return index;

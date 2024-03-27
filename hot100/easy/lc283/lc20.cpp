@@ -59,5 +59,10 @@ bool isValid(string s) {
 }
 
 int main(){
+    if (isValid("{[]}"))
+    {
+        cout << "valid";
+    }
+    
     return 0;
 }

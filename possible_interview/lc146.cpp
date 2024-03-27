@@ -80,3 +80,24 @@ public:
         head->right=node;
     }
 };
+
+void testLRUCache() {
+    LRUCache cache(2);
+
+    cache.put(1, 1);
+    cache.put(2, 2);
+    std::cout << cache.get(1) << std::endl; // 返回 1
+
+    cache.put(3, 3);    // 该操作会使得密钥 2 作废
+    std::cout << cache.get(2) << std::endl; // 返回 -1 (未找到)
+
+    cache.put(4, 4);    // 该操作会使得密钥 1 作废
+    std::cout << cache.get(1) << std::endl; // 返回 -1 (未找到)
+    std::cout << cache.get(3) << std::endl; // 返回 3
+    std::cout << cache.get(4) << std::endl; // 返回 4
+}
+
+int main() {
+    testLRUCache();
+    return 0;
+}

@@ -12,18 +12,19 @@ using namespace std;
 //      多于 3 次，所以她的 h 指数是 3
 int hIndex(vector<int>& citations) {
     sort(citations.begin(), citations.end(), std::greater<int>());
-    int ans = 0;
+    int ans = -1;
     for(int i=0;i<citations.size();i++){
         if(citations[i]<i+1){
             ans = i;
             break; 
         }
-    }
-    return ans;
+    }    
+    //当所有的引用次数都大于文章的数量时
+    return ans==-1?citations.size():ans;
 }
 
 int main(){
-    vector<int> a = {1,3,2,2};
+    vector<int> a = {0};
     cout << hIndex(a);
     return 0;
 }
