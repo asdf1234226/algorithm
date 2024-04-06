@@ -31,11 +31,11 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n){
             nums1[index--]=nums2[index2--];
         }
     }
-    if (index1>=0)
+    while (index1>=0)
     {
         nums1[index--]=nums1[index1--];
     }
-    if (index2>=0)
+    while (index2>=0)
     {
         nums1[index--]=nums2[index2--];
     }
@@ -46,8 +46,8 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n){
 }
 
 int main(){
-    vector<int> a = {1,2,3,0,0,0};
-    vector<int> b = {2,5,6};
+    vector<int> a = {4,5,6,0,0,0};
+    vector<int> b = {1,2,3};
     merge(a,3,b,3);
     return 0;
 }
