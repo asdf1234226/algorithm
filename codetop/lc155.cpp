@@ -23,14 +23,16 @@ public:
     
     void push(int val) {
         st.push(val);
-        if (help.empty()||help.top()>=val)
+        if (!help.empty()&&help.top()>=val)//if 还是while  TODO
         {
-            help.push(val);
+            help.pop();
         }
+        help.push(val);
     }
     
     void pop() {
-        if(!help.empty()&& st.top()==help.top()){
+        if (!help.empty()&&help.top()==st.top())
+        {
             help.pop();
         }
         st.pop();
