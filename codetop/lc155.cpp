@@ -23,11 +23,10 @@ public:
     
     void push(int val) {
         st.push(val);
-        if (!help.empty()&&help.top()>=val)//if 还是while  TODO
+        if (help.empty()||help.top()>=val)//只有val<=当前最小栈的栈顶再插入
         {
-            help.pop();
+            help.push(val);
         }
-        help.push(val);
     }
     
     void pop() {

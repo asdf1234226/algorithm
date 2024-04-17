@@ -17,7 +17,7 @@ bool wordBreak(string s, vector<string>& wordDict){
     for(auto it: wordDict){
         st.insert(it);
     }
-    //dp[i]=true 前i个字母可以组成, dp[i]由于dp[j]==true并且前j+1到前i个的子串在字典中
+    //dp[i]=true 前i个字母可以组成, dp[i]由dp[j]==true并且前j+1到前i个的子串在字典中
     //                                                      [j+1-1,i-1]
     for (int i = 1; i <= n; i++)
     {
