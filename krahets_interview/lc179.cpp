@@ -21,28 +21,29 @@ void quickSort(vector<string>& strs, int l ,int r){
     {
         return;
     }
-    int i = l, j= r;
-    int mid = (l+r)>>1;
+    int i = l-1, j= r+1;
+    int base = l;
     while (i<j)
     {
-        while (i<j && strs[i]+strs[mid]<=strs[mid]+strs[i])
-        {
+        //i左边要>privot
+        do{
             i++;
         }
-        while (i<j && strs[j]+strs[mid]>=strs[mid]+strs[j])
-        {
+        while (i<j && strs[i]+strs[base]>strs[base]+strs[i]);
+        //j右边<privot
+        do{
             j--;
         }
+        while (i<j && strs[j]+strs[base]<strs[base]+strs[j]);
 
         if(i<j){
             swap(strs[i], strs[j]);
         }
     }
-    //j前面的元素<=pivot;j后面的元素>=pivot
     quickSort(strs,l,j);
     quickSort(strs,j+1,r);
 }
-//TODO FIX
+
 string largestNumber(vector<int>& nums) {
     int n = nums.size();
     vector<string> strs;
@@ -51,14 +52,14 @@ string largestNumber(vector<int>& nums) {
     }
     quickSort(strs,0,n-1);
     string ans = "";
-    for(int i = strs.size()-1;i>=0;i--){
-        ans+=strs[i];
+    for(auto it : strs){
+        ans+=it;
     }
     return ans;
 }
 
 int main(){
-    vector<int> a = {8308,8308,830};
+    vector<int> a = {10,2,9,39,17};
     cout << largestNumber(a);
     return 0;
 }
