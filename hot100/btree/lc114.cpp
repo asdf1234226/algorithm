@@ -22,6 +22,10 @@ struct TreeNode{
         right=nullptr;
     }
 };
+//找到左子树的右下角
+//将右子树拼接到右下角
+//翻转到右子树，左子树置空
+//继续下一个节点root=root->right(因为全翻到右边了)
 
 void flatten(TreeNode* root) {
     while(root){

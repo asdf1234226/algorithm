@@ -4,7 +4,10 @@ public:
     // 构造函数
     my_shared_ptr(T* ptr) : ptr_(ptr), count_(new int(1)) {}
 
-    // 复制构造函数
+    //拷贝构造函数是创建新对象，赋值是作用于另一个已经存在的对象；所以拷贝只需要复制并引用计数+1
+    //赋值运算符需要减少当前对象的引用（如果0要delete），还要判断是否自引用
+
+    // 复制(拷贝)构造函数
     // my_shared_ptr(const my_shared_ptr& other){
     //     ptr_=other.ptr_;
     //     count_=other.count_;

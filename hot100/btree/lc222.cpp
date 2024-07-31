@@ -9,7 +9,7 @@ int countNodes(TreeNode* root) {//普通二叉树求节点数
 }
 
 int countNodes(TreeNode* root) {//完全二叉树求节点数
-    //如果判断是完全二叉树，向左遍历的深度 == 向右遍历的深度
+    //如何判断是完全二叉树，向左遍历的深度 == 向右遍历的深度
     if(root==nullptr) return 0;
     //利用满二叉树性质,2^depth-1
     int l = 0;
